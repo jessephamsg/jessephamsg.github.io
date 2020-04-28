@@ -334,9 +334,3 @@ const statsService = {
     }
 }
 
-
-$(() => {
-    $('input').focus(() => {
-        console.log('say stuff');
-    })
-})

@@ -96,7 +96,12 @@ const renderInput = {
         $('.right-section').css('display', 'block');
 
         //Currently, Work Title can't be changed because of this Matching mechanism
+        $('input').prop('readonly', false);
         $('#work-title').prop("readonly", true);
+
+        //Enable Form
+        $('option').prop("disabled", false);
+        $('.right-section').css('opacity', '1');
 
         //Assign values from the workProfile Object to the existing fields
         for (let i = 0; i < formIds.workIds.length; i++) {
@@ -106,6 +111,12 @@ const renderInput = {
         for (i = 0; i < workProfile[index].taskTitle.length; i++) {
             renderInput.showHistoricalTasks(workProfile[index].taskEnjoyment[i], workProfile[index].taskTitle[i], workProfile[index].taskNature[i], workProfile[index].taskDescription[i], i)
         }
+
+        //Enable Save Edits button
+        $(`button:contains(${instructions.profilePage.buttonText.saveEdits})`).css('display', 'block');
+        $(`button:contains(${instructions.profilePage.buttonText.saveJob})`).css('display', 'none');
+        $(`button`).css('background-color', 'rgba(0, 0, 0, 0)').css('color', 'white');
+        $(`button:contains(${workTitle})`).css('background-color', 'rgba(94, 205, 191)').css('color', 'white');
     },
 
     clearInputs(arrayOfInputs) {
@@ -129,7 +140,13 @@ const navigationalController = {
         $('.right-section').css('display', 'block');
         renderInput.clearInputs(['input', 'select']);
         $('.form-right-body').empty();
-        $('#work-title').prop("readonly", false);
+        $('input').prop("readonly", false);
+        $('option').prop("disabled", false);
+        $('.right-section').css('opacity', '1');
+        $(`button:contains(${instructions.profilePage.buttonText.saveEdits})`).css('display', 'none');
+        $(`button:contains(${instructions.profilePage.buttonText.saveJob})`).css('display', 'none');
+        $(`button`).css('background-color', 'rgba(0, 0, 0, 0)').css('color', 'white');
+        $(`button:contains(${instructions.profilePage.buttonText.addJob})`).css('background-color', 'rgba(94, 205, 191)').css('color', 'white');
 
         //Create a new work object, ready to receive user's input and push it to the existing workProfile array
         const workItem = new Work('', '', '', '', '', [], [], [], []);
@@ -139,8 +156,9 @@ const navigationalController = {
 
     hideForm() {
 
-        //Allow users to change the form input
-        $('#work-title').prop("readonly", false);
+        //Disallow users to change the form input
+        $('input').prop("readonly", true);
+        $('option').prop("disabled", true);
 
         //Update the work object created with the user's inputs relating to Job (not tasks)
         let index = 0;
@@ -158,6 +176,7 @@ const navigationalController = {
         //Once a new job object is saved, clear all inputs in the form
         renderInput.clearInputs(['input', 'select']);
         $('.form-right-body').empty();
+        $('.right-section').css('opacity', '0.4');
 
         //Update all stats on the screen to reflect the new job
         updateAllStats();
@@ -189,6 +208,16 @@ const navigationalController = {
         let workObject = workProfile[workProfile.length - 1];
         renderInput.updateTask(workObject.taskEnjoyment.slice(-1)[0], workObject.taskTitle.slice(-1)[0], workObject.taskNature.slice(-1)[0], workObject.taskDescription.slice(-1)[0]);
         renderInput.clearInputs(formIds.taskIds);
+
+        //Enable Save As New Job Button
+        let currentFormTitle = $('#work-title').val();
+        let buttonWithTheSameTitle = $(`button:contains(${currentFormTitle})`).length;
+
+        if(buttonWithTheSameTitle > 0) {
+            $(`button:contains(${instructions.profilePage.buttonText.saveJob})`).css('display', 'none');
+        } else {
+            $(`button:contains(${instructions.profilePage.buttonText.saveJob})`).css('display', 'block');
+        }
     },
 
     saveEdits() {
@@ -204,7 +233,9 @@ const navigationalController = {
         for (let i = 0; i < formIds.workIds.length; i++) {
             workProfile[index][formIds.workKeys[i]] = $(`${formIds.workIds[i]}`).val();
         }
-        $('.right-section').css('display', 'none');
+
+        //Clear all inputs
+        alert('Edits saved');
     }
 }
 
@@ -235,3 +266,9 @@ const getIndustryData = () => {
         }
     });
 }
+
+$(() => {
+    $('input').focus(() => {
+        console.log('say stuff');
+    })
+})

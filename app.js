@@ -198,6 +198,10 @@ const pageBuilder = {
             elementFormatter.formatButton(formFooter, buttons[key].text, buttons[key].callback);
         }
 
+        //Hide buttons
+        $(`button:contains(${buttonText.saveJob})`).css('display', 'none');
+        $(`button:contains(${buttonText.saveEdits})`).css('display', 'none');
+
         //Generate Form Content
         this.createFormLeftSide();
         this.createFormRightSide();
