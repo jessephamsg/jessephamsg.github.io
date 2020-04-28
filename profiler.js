@@ -156,10 +156,6 @@ const navigationalController = {
 
     hideForm() {
 
-        //Disallow users to change the form input
-        $('input').prop("readonly", true);
-        $('option').prop("disabled", true);
-
         //Update the work object created with the user's inputs relating to Job (not tasks)
         let index = 0;
         for (let key in workProfile[workProfile.length - 1]) {
@@ -172,6 +168,11 @@ const navigationalController = {
         //Create a button of the job that user just created. Clicking on this button allows user to see the historical job entries
         console.log(workProfile);
         renderInput.showJob(workProfile[workProfile.length - 1].workTitle);
+
+        //Disallow users to change the form input once submitted
+        $('input').prop("readonly", true);
+        $('option').prop("disabled", true);
+        $(`button:contains(${instructions.profilePage.buttonText.saveJob})`).css('display', 'none');
 
         //Once a new job object is saved, clear all inputs in the form
         renderInput.clearInputs(['input', 'select']);
@@ -213,7 +214,7 @@ const navigationalController = {
         let currentFormTitle = $('#work-title').val();
         let buttonWithTheSameTitle = $(`button:contains(${currentFormTitle})`).length;
 
-        if(buttonWithTheSameTitle > 0) {
+        if (buttonWithTheSameTitle > 0) {
             $(`button:contains(${instructions.profilePage.buttonText.saveJob})`).css('display', 'none');
         } else {
             $(`button:contains(${instructions.profilePage.buttonText.saveJob})`).css('display', 'block');
