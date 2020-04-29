@@ -131,9 +131,24 @@ const renderInput = {
         for (let input of arrayOfInputs) {
             $(`${input}`).val('');
         }
-    }
+    },
 }
 
+const entryChecker = {
+    checkWorkTitle () {
+        let entry = $(`${formIds.workIds[0]}`).val();
+        $(`${formIds.workIds[0]}+div`).remove();
+        let instruction = $('<div>').text('Numbers not allowed');
+        $(`${formIds.workIds[0]}`).after(instruction);
+        console.log(entry);
+        console.log(parseInt(entry.charAt(entry.length-1)));
+        if(isNaN(parseInt(entry.charAt(entry.length-1)))) {
+            instruction.css('display', 'none');
+        } else {
+            instruction.css('display', 'block');
+        }
+    }
+}
 
 //===================================
 //FUNCTIONS TO PROCESS INPUTS & DATA
@@ -290,7 +305,7 @@ const getIndustryData = () => {
 }
 
 $(() => {
-    $('input').focus(() => {
-        console.log('say stuff');
+    $('input').change(() => {
+        entryChecker.checkWorkTitle();
     })
 })

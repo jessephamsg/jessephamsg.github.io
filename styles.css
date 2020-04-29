@@ -489,3 +489,9 @@ progress[value]::-webkit-progress-value {
 	color: #ffffff4f;
 	font-size: 13px;
 }
+
+#work-title+div {
+	color: red;
+	font-size: 9px;
+	margin-left:10%;
+}
