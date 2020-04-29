@@ -13,7 +13,9 @@ let workIndustryOptions = [];
 
 const workNatureOptions = ['Voluntary', 'Full-time', 'Part-time', 'Freelance'];
 
-const taskNatureOptions = ['Create', 'Organise', 'Influence', 'Research']
+const taskNatureOptions = ['Create', 'Organise', 'Influence', 'Research'];
+
+const taskEnjoymentOptions = ['1', '2', '3', '4', '5'];
 
 class Work {
     constructor(workTitle, workDuration, teamSize, workNature, industry, taskTitle, taskEnjoyment, taskDescription, taskNature) {

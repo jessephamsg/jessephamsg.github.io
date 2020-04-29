@@ -75,8 +75,8 @@ const formStructure = {
         selectChildren: { workNatureInput, workIndustryInput }
     },
     modalFields: {
-        inputChildren: { taskTitle, taskEnjoyment, taskDescription },
-        selectChildren: { taskNature }
+        inputChildren: { taskTitle, taskDescription },
+        selectChildren: { taskEnjoyment, taskNature }
     }
 };
 
@@ -110,11 +110,11 @@ const instructions = {
         generalGuide: 'Add Experience',
         fieldLabel: {
             taskTitle: 'Your Task',
-            feelingDescription: 'Your Enjoyment',
             taskDescription: 'Description'
         },
         dropdownLabel: {
             taskType: 'Task Nature',
+            feelingDescription: 'Your Enjoyment',
         }
     }
 };
@@ -277,6 +277,7 @@ const pageBuilder = {
         }
 
         //Generate Dropdown Options
+        elementFormatter.formatSelection(taskEnjoymentOptions, selectChildren.taskEnjoyment.elementParentIdentifier, instructions.modalPage.dropdownLabel.feelingDescription, selectChildren.taskEnjoyment.elementClass);
         elementFormatter.formatSelection(taskNatureOptions, selectChildren.taskNature.elementParentIdentifier, instructions.modalPage.dropdownLabel.taskType, selectChildren.taskNature.elementClass);
 
         //Generate Modal Buttons
