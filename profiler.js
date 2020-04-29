@@ -66,8 +66,14 @@ const renderInput = {
 
     updateTask(taskEnjoyment, taskTitle, taskNature, taskDescription) {
 
+        let workTitle = $('#work-title').val();
+        let j = 0;
+        for (let i = 0; i < workProfile.length; i++) {
+            if (workProfile[i].workTitle === workTitle) j = i;
+        }
+
         //Get New Index to Add Another Card to the Existing Job
-        let index = workProfile[workProfile.length - 1].taskTitle.length - 1;
+        let index = workProfile[j].taskTitle.length - 1;
         this.showTask(taskEnjoyment, taskTitle, taskNature, taskDescription, index);
     },
 
@@ -195,27 +201,39 @@ const navigationalController = {
 
     saveInput() {
 
-        //Update the task array within the work object created with the user's inputs relating to tasks
+        //Identify the task array within the work object created with the user's inputs relating to tasks 
+        let workTitle = $('#work-title').val();
+        let j = 0;
+        let test = false;
+        let result = 0;
+        for (let i = 0; i < workProfile.length; i++) {
+            if (workProfile[i].workTitle === workTitle) {
+                result = i;
+                test = true;
+            }
+        }
+        (result === 0 && test === false) ? j = workProfile.length - 1 : j = result;
+
+        //Update the task array within the work object created with the user's inputs relating to tasks 
         let index = 0;
-        for (let key in workProfile[workProfile.length - 1]) {
+        for (let key in workProfile[j]) {
             if (key === formIds.taskKeys[index]) {
-                workProfile[workProfile.length - 1][key].push($(`${formIds.taskIds[index]}`).val());
+                workProfile[j][key].push($(`${formIds.taskIds[index]}`).val()); 
                 index++
             }
         }
 
         //For every new task update, create a card of that task and attach it on the form body
         console.log(workProfile);
-        let workObject = workProfile[workProfile.length - 1];
-        renderInput.updateTask(workObject.taskEnjoyment.slice(-1)[0], workObject.taskTitle.slice(-1)[0], workObject.taskNature.slice(-1)[0], workObject.taskDescription.slice(-1)[0]);
+        renderInput.updateTask(workProfile[j].taskEnjoyment.slice(-1)[0], workProfile[j].taskTitle.slice(-1)[0], workProfile[j].taskNature.slice(-1)[0], workProfile[j].taskDescription.slice(-1)[0]);
         renderInput.clearInputs(formIds.taskIds);
 
         //Enable Save As New Job Button
         let currentFormTitle = $('#work-title').val();
         let buttonWithTheSameTitle = $(`button:contains(${currentFormTitle})`).length;
-
         if (buttonWithTheSameTitle > 0) {
             $(`button:contains(${instructions.profilePage.buttonText.saveJob})`).css('display', 'none');
+            updateAllStats();
         } else {
             $(`button:contains(${instructions.profilePage.buttonText.saveJob})`).css('display', 'block');
         }
@@ -236,6 +254,7 @@ const navigationalController = {
         }
 
         //Clear all inputs
+        updateAllStats();
         alert('Edits saved');
     }
 }
