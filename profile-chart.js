@@ -34,6 +34,7 @@ const updateAllStats = () => {
     statsService.updateEnjoymentStats();
     statsService.updateTeamStats();
     statsService.updateIndustryExperience();
+    getHeroesData();
 }
 
 const buildStatsComponents = () => {

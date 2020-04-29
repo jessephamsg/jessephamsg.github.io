@@ -146,8 +146,6 @@ const entryChecker = {
         let instruction = $('<div>').text(errorText);
         $(`${inputId}`).after(instruction);
         let stringArr = entry.split('');
-        console.log(stringArr);
-        console.log(stringArr.some((item) => parseInt(item)));
         (stringArr.some((item) => parseInt(item))) ? instruction.css('display', 'block') : instruction.css('display', 'none');
     },
     hasTextInput(inputId, errorText) {
@@ -156,8 +154,6 @@ const entryChecker = {
         let instruction = $('<div>').text(errorText);
         $(`${inputId}`).after(instruction);
         let stringArr = entry.split('');
-        console.log(stringArr);
-        console.log(stringArr.every((item) => parseInt(item)));
         (stringArr.every((item) => parseInt(item))) ? instruction.css('display', 'none') : instruction.css('display', 'block');
     },
     checkWorkTitle() {
