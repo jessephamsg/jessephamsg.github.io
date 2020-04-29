@@ -37,6 +37,11 @@ const profileInstance = {
     taskNature: {},
 };
 
+const errorMessage = {
+    workTitle: 'Numbers not allowed',
+    workDuration: 'Letters not allowed',
+    teamSize: 'Letters not allowed',
+}
 
 //===================================
 //FUNCTIONS TO DISPLAY DATA
@@ -135,18 +140,40 @@ const renderInput = {
 }
 
 const entryChecker = {
-    checkWorkTitle () {
-        let entry = $(`${formIds.workIds[0]}`).val();
-        $(`${formIds.workIds[0]}+div`).remove();
-        let instruction = $('<div>').text('Numbers not allowed');
-        $(`${formIds.workIds[0]}`).after(instruction);
-        console.log(entry);
-        console.log(parseInt(entry.charAt(entry.length-1)));
-        if(isNaN(parseInt(entry.charAt(entry.length-1)))) {
-            instruction.css('display', 'none');
-        } else {
-            instruction.css('display', 'block');
-        }
+    hasNumberInput(inputId, errorText) {
+        let entry = $(`${inputId}`).val();
+        $(`${inputId}+div`).remove();
+        let instruction = $('<div>').text(errorText);
+        $(`${inputId}`).after(instruction);
+        let stringArr = entry.split('');
+        console.log(stringArr);
+        console.log(stringArr.some((item) => parseInt(item)));
+        (stringArr.some((item) => parseInt(item))) ? instruction.css('display', 'block') : instruction.css('display', 'none');
+    },
+    hasTextInput(inputId, errorText) {
+        let entry = $(`${inputId}`).val();
+        $(`${inputId}+div`).remove();
+        let instruction = $('<div>').text(errorText);
+        $(`${inputId}`).after(instruction);
+        let stringArr = entry.split('');
+        console.log(stringArr);
+        console.log(stringArr.every((item) => parseInt(item)));
+        (stringArr.every((item) => parseInt(item))) ? instruction.css('display', 'none') : instruction.css('display', 'block');
+    },
+    checkWorkTitle() {
+        $(`${formIds.workIds[0]}`).change(() => {
+            this.hasNumberInput(formIds.workIds[0], errorMessage[Object.keys(errorMessage)[0]]);
+        })
+    },
+    checkWorkDuration() {
+        $(`${formIds.workIds[1]}`).change(() => {
+            this.hasTextInput(formIds.workIds[1], errorMessage[Object.keys(errorMessage)[1]]);
+        })
+    },
+    checkTeamSize() {
+        $(`${formIds.workIds[2]}`).change(() => {
+            this.hasTextInput(formIds.workIds[2], errorMessage[Object.keys(errorMessage)[2]]);
+        })
     }
 }
 
@@ -235,7 +262,7 @@ const navigationalController = {
         let index = 0;
         for (let key in workProfile[j]) {
             if (key === formIds.taskKeys[index]) {
-                workProfile[j][key].push($(`${formIds.taskIds[index]}`).val()); 
+                workProfile[j][key].push($(`${formIds.taskIds[index]}`).val());
                 index++
             }
         }
@@ -305,7 +332,7 @@ const getIndustryData = () => {
 }
 
 $(() => {
-    $('input').change(() => {
-        entryChecker.checkWorkTitle();
-    })
+    entryChecker.checkWorkTitle();
+    entryChecker.checkWorkDuration();
+    entryChecker.checkTeamSize();
 })
