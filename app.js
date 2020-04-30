@@ -172,7 +172,7 @@ const pageBuilder = {
         let profileSectionClass = pageConstruct.bottomSection.leftSection.elementClass;
 
         //Generate Header
-        $(`.${profileSectionClass}`).prepend($('<h2>').text(instructions.profilePage.generalGuide.profileSectionTitle));
+        $(`.${profileSectionClass}`).prepend($('<h2>').text(instructions.profilePage.generalGuide.profileSectionTitle).attr('id', 'all-jobs'));
 
         //Generate Buttons to Add Job
         $(`.${addJobButton}`).text(instructions.profilePage.buttonText.addJob);
@@ -289,7 +289,7 @@ const pageBuilder = {
             elementFormatter.formatButton(modalParentClass, buttons[key].text, buttons[key].callback);
         }
         $(`.${modalSection.elementClass}`).css('display', 'none');
-    }
+    },
 }
 
 
@@ -342,7 +342,7 @@ const elementFormatter = {
         
         let button = this.formatElement('button', inputParentClassName, labelText, '');
         button.on('click', callback)
-    }
+    },
 }
 
 

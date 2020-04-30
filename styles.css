@@ -479,9 +479,15 @@ progress[value]::-webkit-progress-value {
 	margin-top: 3%;
 }
 
+#bottom-links > h4 {
+   font-size: 14px;
+   text-align:center;
+   padding-left: 5px;
+   padding-right: 5px;
+}
+
 #bottom-links > img {
     opacity: 0.4;
-    margin-top: 10%;
     margin-bottom: 10%;
 }
 
@@ -503,6 +509,26 @@ progress[value]::-webkit-progress-value {
 }
 
 #team-size+div {
+	color: red;
+	font-size: 9px;
+	margin-left:10%;
+}
+
+#bottom-links:hover {
+	box-shadow: 0 4px 8px 0 rgba(60,182,226, 0.4);
+}
+
+#bottom-links>img:hover {
+	opacity: 0.7;
+}
+
+#work-nature-input+div {
+	color: red;
+	font-size: 9px;
+	margin-left:10%;
+}
+
+#work-industry-input+div {
 	color: red;
 	font-size: 9px;
 	margin-left:10%;

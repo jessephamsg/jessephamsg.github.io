@@ -63,6 +63,7 @@ const buildMatchComponents = () => {
 
 const renderMatchedProfile = (object) => {
     $('#bottom-links').empty();
+    $('#bottom-links').append($('<h4>').text('Your Closest Job Profile Match'));
     $('#bottom-links').append($('<img>').attr('src', `${object.url}`).attr('width', '80%'));
     $('#bottom-links').append($('<div>').text(`Research: ${object.research}`));
     $('#bottom-links').append($('<div>').text(`Create: ${object.create}`));

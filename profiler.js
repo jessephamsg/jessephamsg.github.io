@@ -41,6 +41,7 @@ const errorMessage = {
     workTitle: 'Numbers not allowed',
     workDuration: 'Letters not allowed',
     teamSize: 'Letters not allowed',
+    form: 'Empty fields detected. Make sure this field is filled'
 }
 
 //===================================
@@ -133,6 +134,7 @@ const renderInput = {
     },
 
     clearInputs(arrayOfInputs) {
+
         for (let input of arrayOfInputs) {
             $(`${input}`).val('');
         }
@@ -140,7 +142,9 @@ const renderInput = {
 }
 
 const entryChecker = {
+
     hasNumberInput(inputId, errorText) {
+
         let entry = $(`${inputId}`).val();
         $(`${inputId}+div`).remove();
         let instruction = $('<div>').text(errorText);
@@ -148,7 +152,9 @@ const entryChecker = {
         let stringArr = entry.split('');
         (stringArr.some((item) => parseInt(item))) ? instruction.css('display', 'block') : instruction.css('display', 'none');
     },
+
     hasTextInput(inputId, errorText) {
+
         let entry = $(`${inputId}`).val();
         $(`${inputId}+div`).remove();
         let instruction = $('<div>').text(errorText);
@@ -156,20 +162,48 @@ const entryChecker = {
         let stringArr = entry.split('');
         (stringArr.every((item) => parseInt(item))) ? instruction.css('display', 'none') : instruction.css('display', 'block');
     },
+
+    hasEmptyField (inputId, errorText) {
+        let entry = $(`${inputId}`).val();
+        $(`${inputId}+div`).remove();
+        let instruction = $('<div>').text(errorText);
+        $(`${inputId}`).after(instruction);
+        entry === '' || entry === null ? instruction.css('display', 'block') : instruction.css('display', 'none');
+    },
+
     checkWorkTitle() {
+
         $(`${formIds.workIds[0]}`).change(() => {
             this.hasNumberInput(formIds.workIds[0], errorMessage[Object.keys(errorMessage)[0]]);
-        })
+        });
     },
+
     checkWorkDuration() {
+
         $(`${formIds.workIds[1]}`).change(() => {
             this.hasTextInput(formIds.workIds[1], errorMessage[Object.keys(errorMessage)[1]]);
-        })
+        });
     },
+
     checkTeamSize() {
+
         $(`${formIds.workIds[2]}`).change(() => {
             this.hasTextInput(formIds.workIds[2], errorMessage[Object.keys(errorMessage)[2]]);
-        })
+        });
+    },
+
+    checkWorkNature() {
+
+        $(`${formIds.workIds[3]}`).change(() => {
+            this.hasEmptyField(formIds.workIds[3], errorMessage[Object.keys(errorMessage)[3]]);
+        });
+    },
+
+    checkWorkIndustry() {
+
+        $(`${formIds.workIds[4]}`).change(() => {
+            this.hasEmptyField(formIds.workIds[4], errorMessage[Object.keys(errorMessage)[3]]);
+        });
     }
 }
 
@@ -193,6 +227,10 @@ const navigationalController = {
         $(`button:contains(${instructions.profilePage.buttonText.saveJob})`).css('display', 'none');
         $(`button`).css('background-color', 'rgba(0, 0, 0, 0)').css('color', 'white');
         $(`button:contains(${instructions.profilePage.buttonText.addJob})`).css('background-color', 'rgba(94, 205, 191)').css('color', 'white');
+        $('button').attr('disabled', true);
+        $('button').css('opacity', '0.2');
+        $(`button:contains(${instructions.profilePage.buttonText.addTask})`).attr('disabled', false);
+        $(`button:contains(${instructions.profilePage.buttonText.addTask})`).css('opacity', '1');
 
         //Create a new work object, ready to receive user's input and push it to the existing workProfile array
         const workItem = new Work('', '', '', '', '', [], [], [], []);
@@ -219,6 +257,8 @@ const navigationalController = {
         $('input').prop("readonly", true);
         $('option').prop("disabled", true);
         $(`button:contains(${instructions.profilePage.buttonText.saveJob})`).css('display', 'none');
+        $('button').attr('disabled', false);
+        $('button').css('opacity', '1');
 
         //Once a new job object is saved, clear all inputs in the form
         renderInput.clearInputs(['input', 'select']);
@@ -231,16 +271,26 @@ const navigationalController = {
 
     hideModal() {
 
+        $('button').attr('disabled', false);
         $('.modal').css('display', 'none');
+        $('button').css('opacity', '1');
     },
 
     launchModal() {
 
+        $('button').attr('disabled', false);
+        $('button').css('opacity', '1');
+        for (let i = 0; i< formIds.workIds.length; i ++) {
+            entryChecker.hasEmptyField(formIds.workIds[i], errorMessage[Object.keys(errorMessage)[3]]);
+        };
+        $(`button:contains(${instructions.profilePage.buttonText.saveJob})`).css('display', 'block');
         $('.modal').css('display', 'block');
     },
 
     saveInput() {
 
+        $('button').attr('disabled', false);
+        $('button').css('opacity', '1');
         //Identify the task array within the work object created with the user's inputs relating to tasks 
         let workTitle = $('#work-title').val();
         let j = 0;
@@ -271,16 +321,18 @@ const navigationalController = {
         //Enable Save As New Job Button
         let currentFormTitle = $('#work-title').val();
         let buttonWithTheSameTitle = $(`button:contains(${currentFormTitle})`).length;
-        if (buttonWithTheSameTitle > 0) {
+        if (buttonWithTheSameTitle > 0 && currentFormTitle !== "") {
             $(`button:contains(${instructions.profilePage.buttonText.saveJob})`).css('display', 'none');
             updateAllStats();
         } else {
             $(`button:contains(${instructions.profilePage.buttonText.saveJob})`).css('display', 'block');
-        }
+        };
     },
 
     saveEdits() {
 
+        $('button').attr('disabled', false);
+        $('button').css('opacity', '1');
         //Identify work object to be updated by matching names of the Work Title on the form currently shown with the Work Title in the workProfile array
         let workTitle = $('#work-title').val();
         let index = 0;
@@ -331,4 +383,6 @@ $(() => {
     entryChecker.checkWorkTitle();
     entryChecker.checkWorkDuration();
     entryChecker.checkTeamSize();
+    entryChecker.checkWorkNature();
+    entryChecker.checkWorkIndustry();
 })
