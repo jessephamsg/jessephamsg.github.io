@@ -116,6 +116,12 @@ const instructions = {
             taskType: 'Task Nature',
             feelingDescription: 'Your Enjoyment',
         }
+    },
+    tooltip: {
+        workDuration: 'This is the number of YEARS you work for a certain job. Only integer input accepted',
+        teamSize: 'Team refers to those working closely with you (i.e. not company size unless you work closely with the whole company!)',
+        taskEnjoyment: 'This is for you to indicate how much you enjoy doing a specific task: 1 is the lowest level of enjoyment, 5 is the highest',
+        taskNature: `Create: tasks categorised as Create involve establishing something new \nOrganise: tasks that involve \nInfluence: \nResearch:`
     }
 };
 
@@ -231,6 +237,11 @@ const pageBuilder = {
         for (let key in dropdownLists) {
             elementFormatter.formatSelection(dropdownLists[key].dataSource, selectChildren[key].elementParentIdentifier, dropdownLists[key].text, selectChildren[key].elementClass);
         }
+
+        $(`label:contains(${profileFieldLabel.workDuration})`).append($('<div>').text('i').attr('id', 'work-duration-tooltip'));
+        $('#work-duration-tooltip').append($('<span>').text(instructions.tooltip.workDuration).attr('id', 'work-duration-tooltip-text'));
+        $(`label:contains(${profileFieldLabel.teamSize})`).append($('<div>').text('i').attr('id', 'team-size-tooltip'));
+        $('#team-size-tooltip').append($('<span>').text(instructions.tooltip.teamSize).attr('id', 'team-size-tooltip-text'));
     },
 
     createFormRightSide() {
@@ -261,6 +272,7 @@ const pageBuilder = {
         let selectChildren = formStructure.modalFields.selectChildren;
         let buttonText = instructions.profilePage.buttonText;
         let modalParentClass = pageConstruct.modalSection.modalContent.elementClass;
+        let modalLabel = instructions.modalPage.dropdownLabel;
 
         //Generate Header
         elementFormatter.formatElement('h3', pageConstruct.modalSection.modalContent.elementClass, instructions.modalPage.generalGuide, '')
@@ -289,6 +301,12 @@ const pageBuilder = {
             elementFormatter.formatButton(modalParentClass, buttons[key].text, buttons[key].callback);
         }
         $(`.${modalSection.elementClass}`).css('display', 'none');
+
+        $(`label:contains(${modalLabel.feelingDescription})`).append($('<div>').text('i').attr('id', 'task-enjoyment-tooltip'));
+        $('#task-enjoyment-tooltip').append($('<span>').text(instructions.tooltip.taskEnjoyment).attr('id', 'task-enjoyment-tooltip-text'));
+        $(`label:contains(${modalLabel.taskType})`).append($('<div>').text('i').attr('id', 'task-nature-tooltip'));
+        $('#task-nature-tooltip').append($('<span>').text(instructions.tooltip.taskNature).attr('id', 'task-nature-tooltip-text'));
+        $('#task-nature-tooltip-text').html($('#task-nature-tooltip-text').html().replace(/\n/g,'<br/>'));
     },
 }
 

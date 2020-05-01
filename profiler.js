@@ -44,6 +44,7 @@ const errorMessage = {
     form: 'Empty field detected. Make sure this field is filled'
 }
 
+
 //===================================
 //FUNCTIONS TO DISPLAY DATA
 //===================================

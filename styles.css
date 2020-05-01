@@ -52,9 +52,10 @@ select {
 
 label {
     margin-left: 5%;
-    margin-bottom: 20px;
+    margin-bottom: 0px;
     font-size: 10px;
-    margin-top: 30px;
+    margin-top: 20px;
+    float: left;
 }
 
 input:focus {
@@ -161,7 +162,7 @@ button {
 }
 
 #task-nature, #task-enjoyment {
-    width: 80%
+    width: 90%;
 }
 
 #task-description {
@@ -532,4 +533,56 @@ progress[value]::-webkit-progress-value {
 	color: red;
 	font-size: 9px;
 	margin-left:10%;
+}
+
+#work-duration-tooltip, #team-size-tooltip, #task-enjoyment-tooltip, #task-nature-tooltip {
+	float: right;
+	background-color:#2faddd66;
+	width: 10px;
+	margin-left: 5px;
+	text-align: center;
+	font-style: italic;
+	border-radius: 2px;
+    vertical-align: middle;
+    position: relative;
+}
+
+#work-duration-tooltip-text, #team-size-tooltip-text, #task-enjoyment-tooltip-text, #task-nature-tooltip-text {
+	position: absolute;
+	visibility: hidden;
+	width: 160px;
+	background-color: #0f0512cf;
+	color: #ffffffc7;
+	font-size: 8px;
+	z-index: 1;
+	bottom: 150%;
+	margin-left: -60px;
+	left: 50%;
+	border-radius: 3px;
+	line-height: 11px;
+	padding: 3px;
+}
+
+#task-nature-tooltip {
+    text-align: left;
+}
+
+#task-nature-tooltip-text {
+    width: 300px;
+    margin-left: 10px;
+}
+
+#work-duration-tooltip:hover #work-duration-tooltip-text {
+	visibility: visible;
+}
+
+#team-size-tooltip:hover #team-size-tooltip-text {
+	visibility: visible;
+}
+
+#task-enjoyment-tooltip:hover #task-enjoyment-tooltip-text {
+	visibility: visible;
+}
+#task-nature-tooltip:hover #task-nature-tooltip-text {
+	visibility: visible;
 }
