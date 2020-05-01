@@ -191,8 +191,8 @@ const pageBuilder = {
 
         //Generate Buttons to Save Edits and Save New Jobs
         const buttons = {
-            saveNewJob: { text: buttonText.saveJob, callback: navigationalController.hideForm },
-            editJobDetails: { text: buttonText.saveEdits, callback: navigationalController.saveEdits }
+            saveNewJob: { text: buttonText.saveJob, callback: navigationalController.saveForm },
+            editJobDetails: { text: buttonText.saveEdits, callback: navigationalController.saveEditedForm }
         };
         for (let key in buttons) {
             elementFormatter.formatButton(formFooter, buttons[key].text, buttons[key].callback);
@@ -282,7 +282,7 @@ const pageBuilder = {
 
         //Generate Modal Buttons
         const buttons = {
-            saveButton: { text: buttonText.saveTask, callback: navigationalController.saveInput },
+            saveButton: { text: buttonText.saveTask, callback: navigationalController.saveNewTask },
             closeButton: { text: buttonText.closeModal, callback: navigationalController.hideModal }
         }
         for (let key in buttons) {
