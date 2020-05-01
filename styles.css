@@ -487,6 +487,14 @@ progress[value]::-webkit-progress-value {
    padding-right: 5px;
 }
 
+#bottom-links > p {
+    font-size: 12px;
+   text-align:center;
+   margin-top: 0px;
+   padding-left: 7%;
+   padding-right: 7%;
+}
+
 #bottom-links > img {
     opacity: 0.4;
     margin-bottom: 10%;
@@ -550,24 +558,26 @@ progress[value]::-webkit-progress-value {
 #work-duration-tooltip-text, #team-size-tooltip-text, #task-enjoyment-tooltip-text, #task-nature-tooltip-text {
 	position: absolute;
 	visibility: hidden;
-	width: 160px;
+	width: 180px;
 	background-color: #0f0512cf;
 	color: #ffffffc7;
-	font-size: 8px;
+	font-size: 9px;
 	z-index: 1;
 	bottom: 150%;
-	margin-left: -60px;
+	margin-left: -30px;
 	left: 50%;
 	border-radius: 3px;
-	line-height: 11px;
-	padding: 3px;
+	line-height: 13px;
+    padding: 3px;
+    text-align: left;
+
 }
 
-#task-nature-tooltip {
+#task-enjoyment-tooltip, #task-nature-tooltip {
     text-align: left;
 }
 
-#task-nature-tooltip-text {
+#task-enjoyment-tooltip-text, #task-nature-tooltip-text {
     width: 300px;
     margin-left: 10px;
 }
