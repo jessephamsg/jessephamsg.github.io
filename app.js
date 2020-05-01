@@ -155,6 +155,9 @@ const pageBuilder = {
         }
         buildStatsComponents();
         buildMatchComponents();
+        elementFormatter.formatElement('div', 'middle-section', '', 'explore-opportunities');
+        $('.explore-opportunities').append($('<img>').attr('src', 'https://pngimage.net/wp-content/uploads/2018/05/experience-png-6.png'));
+        $('.explore-opportunities').on('click', buildGainExpModal);
     },
 
     buildNavContent() {
