@@ -42,13 +42,40 @@ Ajax: for API connections
 
 ## User Stories
 
-### Know what the app is about
-As a user, I need to know what this app is about and receive basic instructions on how to navigate the app
+### App Instructions
+As a user, I need to know what to do when
 
-![Wireframes](https://github.com/jessephamsg/jessephamsg.github.io/blob/master/Wireframes/Screenshot%202020-05-03%2001.03.26.png)
+#### First Using the App
+- What the app is about
+- How to set-up 
 
-### Add Job(s)
-As a user, I would like to be able to key in details of my jobs/ hobbies/ activities
-<a></a>
+![Wireframes](https://github.com/jessephamsg/jessephamsg.github.io/blob/master/Wireframes/instructions.png)
 
+#### Making Entry Mistakes
+- What mistake was made
+- How to edit the mistake
+
+![Wireframes](https://github.com/jessephamsg/jessephamsg.github.io/blob/master/Wireframes/error-msg.png)
+
+#### Typing Entry 
+- What entry is expected
+- What the labels mean
+
+![Wireframes](https://github.com/jessephamsg/jessephamsg.github.io/blob/master/Wireframes/tooltip.png)
+
+### Add/ Edit/ Review Job(s)
+As a user, I would like to be able to key in details of my jobs/ hobbies/ activities, review and subsequently edit them after submiting the entries
+- Add using Add Job button
+- Edit and save edits using Save Edits
+- Review entries by clicking on buttons on the Profile section
+
+![Wireframes](https://github.com/jessephamsg/jessephamsg.github.io/blob/master/Wireframes/main-page.png)
+
+### View Charts
+As a user, I would like to view charts changed and updated every time I edit my own data
+
+### Gain Experience
+As a user, I would like to have options to gain more experience
+
+![Wireframes](https://github.com/jessephamsg/jessephamsg.github.io/blob/master/Wireframes/gain-exp.png)
 
