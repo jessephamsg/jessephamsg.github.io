@@ -41,7 +41,7 @@ The project involves building a skill profiler, by accepting and analysing users
 ### App Instructions
 As a user, I need to know what to do when
 
-#### First Using the App
+#### 1. First Using the App
 - What the app is about
 - How to set-up 
 
@@ -49,21 +49,25 @@ As a user, I need to know what to do when
 
 **Required Features**: Welcome Instructions 
 
-#### Making Entry Mistakes
+#### 2. Making Entry Mistakes
 - What mistake was made
 - How to edit the mistake
 
 ![Wireframes](https://github.com/jessephamsg/jessephamsg.github.io/blob/master/Wireframes/error-msg.png)
 
-**Required Features**: Error Messages 
+**Required Features**: Error Messages
+- Check for empty fields to prevent 'null' values
+- Check for numerical/ text inputs to prevent 'NaN' values 
 
-#### Typing Entry 
+#### 3. Typing Entry 
 - What entry is expected
 - What the labels mean
 
 ![Wireframes](https://github.com/jessephamsg/jessephamsg.github.io/blob/master/Wireframes/tooltip.png)
 
-**Required Features**: Error Messages 
+**Required Features**: Tooltip & Alert
+- Tooltip to tell users what the purposes of the required inputs
+- Alert triggered on Save events 
 
 ----------------------------
 
@@ -75,12 +79,20 @@ As a user, I would like to be able to key in details of my jobs/ hobbies/ activ
 
 ![Wireframes](https://github.com/jessephamsg/jessephamsg.github.io/blob/master/Wireframes/main-page.png)
 
-**Required Features**: Add Jobs, Edit, Save Edits, Profile Buttons 
+**Required Features**: Add Jobs, Save Edits, Profile Buttons 
+- Add New Jobs
+- Retrieve Jobs
+- Edit Jobs
 
 ----------------------------
 
-### View Charts
+### View Charts & Job Match
 As a user, I would like to view charts changed and updated every time I edit my own data
+
+**Required Features**: Radar Chart, Progress Bar, Matching Mechanism
+- Radar Chart
+- Progress Chart
+- Matching Mechanism: API & Delta calculation
 
 ----------------------------
 
