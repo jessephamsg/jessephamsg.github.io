@@ -94,6 +94,10 @@ input:focus {
     justify-content: space-between;
 }
 
+.form-right-header>button {
+	margin-left: 20px;
+}
+
 .form-footer {
     display: flex;
     justify-content: flex-start;

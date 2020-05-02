@@ -1,226 +1,168 @@
-/* ANALYTICS & CHART ELEMENTS */
+/* MODAL AND CARD ELEMENTS */
 
 
-/* Task Nature Chart */
+/* Modals */
 
-.middle-section {
-    width: 65%;
-    height: 100%;
+.modal, .modal-exp, .modal-welcome {
+	background-color: rgba(0,0,0,0.8);
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	z-index: 3;
+	overflow: auto;
 }
 
-#myChart {
+.modal-content, .modal-exp-body, .modal-welcome-body {
+    background-image: linear-gradient(to bottom, rgba(44, 99, 129),rgba(52, 76, 126),rgba(58, 48,110));
+	height: 70%;
+	width: 50%;
+    border-radius: 10px;
+    margin: 150px auto;
+    color: white;
+	box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+}
+
+.modal-content > h3 {
+    margin-left: 5%;
+    margin-top: 7%;
+    padding-top: 7%;
+}
+
+.modal-content > button {
+    margin-left: 5%;
+    margin-top: 3%;
+}
+
+.modal-content > input {
+    margin-left: 5%;
+    width: 90%;
+    transition: none;
+}
+
+
+.modal-welcome-head {
+	margin-left: 5%;
+	margin-right: 5%;
+	color: #f0f8ffb8;
+}
+
+.modal-welcome-head>h3 {
+	font-size: 20px;
+	padding-top: 7%;
+}
+
+.modal-welcome-head>p {
+	font-size: 15px;
+	line-height: 21px;
+}
+
+.modal-welcome-head>div {
+	background-color: rgba(4, 5, 7, 0.48);
+	margin-bottom: 3px;
+	border-radius: 8px;
+	padding: 10px;
+	font-size: 14px;
+	line-height: 19px;
+}
+
+.modal-welcome-footer>button {
+	margin-left: 5%;
+	margin-top: 10px;
+}
+
+
+/* Card Elements */
+
+.card-wrapper {
     width: 100%;
-    height: 350px;
+    background-image: linear-gradient(to right, rgba(44, 99, 129),rgba(52, 76, 126),rgba(58, 48,110));
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 10px;
+    padding-left: 10px;
+    font-size: 10px;
+    margin-top: 5px;
+    border-radius: 5px;
 }
 
-#chart-label {
+.card-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.card-title {
+    color: rgb(122, 221, 214);
+    font-size: 15px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.card-label {
     width: 30%;
     height: 10%;
-    margin-left: 35%;
-    margin-top: 10%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    background-color: rgb(122, 221, 214);
+    color: rgba(58, 48,110);
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 7px;
 }
 
-#chart-label > div:first-child {
-	color: rgb(60,182,226);
-	font-size: 10px;
+.card-body {
+    font-size: 8px;
+    color: white;
+    padding-top: 6px;
 }
 
-#chart-label > div:nth-child(2) {
-	color: white;
-	font-size: 15px;
-	font-weight: 900;
-}
-
-
-/* Team Size Section */
-
-#average-team-size {
-    width: 100%;
-    height: 10%;
-    background-color: rgba(0, 0, 0, 0);
-    color: #ffffff4a;
-    padding-left: 10px;
-    display: flex;
-	flex-direction: row;
-	align-items:center;
-	margin-left: 20px;
-}
-
-#average-team-size > h4 {
-	font-size: 10px;
-	width: 30%;
-}
-
-#average-team-size > div {
-	font-size: 45px;
-	text-align: center;
-	padding-left: 10px;
-	color: #3bb6e280;
+.card-hyperlink {
+    color: rgb(60,182,226);
+    padding-left: 20px;
 }
 
 
-/* Average Enjoyment Section */
+/* Explore Elements */
 
-.left-bottom-section {
-    width: 13%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
+.explore-opportunities {
+	position: absolute;
+	width: 70px;
+	height: 70px;
+	background-color: rgba(60, 182, 226, 0.21);
+	top: 16%;
+	left: 27%;
+	border-radius: 10px;
+	opacity: 0.7;
+	border: 1px solid rgba(60, 182, 226, 0.4);
 }
 
-#average-enjoyment {
-    width: 100%;
-    height: 50%;
-    background-image: linear-gradient(to bottom, rgba(23, 16, 68, 0.8),rgba(23, 16, 68, 0));
-    display: flex;
-	flex-direction: column;
-	margin-left: 20px;
-	padding-right: 10px;
-	padding-top:10px;
-	margin-top:5px;
-	color: #ffffff6b;     
+.explore-opportunities > img {
+	width: 100%;
+	padding-top: 17%;
 }
 
-#average-enjoyment > h4 {
-	font-size: 10px;
-	padding-left: 10px;
-	margin-bottom: 5px;
+.explore-opportunities:hover {
+	box-shadow: 0 4px 8px 5px rgba(239, 243, 245, 0.2);
 }
 
-#average-enjoyment > progress {
-    -webkit-appearance: none;
-    appearance: none;
-    height: 20px;
-    width: 100%; 
-    border-radius: 2px; 
-    padding-left: 10px;
-}
-
-#best-task > div {
-	font-size: 8px;
-	padding-left: 10px;
-	color: #d3d3d366;
-}
-
-
-/* Industrial Experience Section */
-
-#industrial-experience {
-    width: 70%;
-    height: 15%;
-    background-image: linear-gradient(to bottom, rgba(23, 16, 68, 0.8),rgba(23, 16, 68, 0));         
-    float: left;
-    position: absolute;
-    z-index: 2;
-    top: 85%;
-    right: 30%;
-    box-shadow: 0px 0px 0px 0px rgba(214, 228, 232, 0.3);
-    display: flex;
-    flex-direction: column;
-
-}
-
-#industrial-experience > h4 {
-	color: #ffffffa6;
-	font-size: 10px;
+.modal-exp-head>.card-wrapper {
+	width: 87%;
 	margin-left: 5%;
-	margin-bottom: 5px;
 }
 
-#industrial-experience > progress {
-	-webkit-appearance: none;
-    appearance: none;
-    height: 10px;
-    width: 65%; 
-    border-radius: 2px; 
-    margin-left: 5%;
+.modal-exp-head>.card-label {
+	width: 70%;
 }
 
-#industrial-experience > h3 {
-	color: #ffffff8c;
-	font-size: 13px;
+.modal-exp-head> h3 {
 	margin-left: 5%;
-	margin-bottom: 5px;
-	margin-top: 3%;
+	margin-top: 7%;
 }
 
-
-/* Job Match Section */
-
-#bottom-links {
-    width: 20%;
-    height: 40%;
-    background-color:#0e1e2769;
-    float: right;
-    position: absolute;
-    z-index: 2;
-    top:60%;
-    right: 22%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: #ffffff4f;
-    font-size: 13px;
+.modal-footer>button {
+	margin-top: 10%;
+	margin-left: 5%;
 }
-
-#bottom-links > h4 {
-    font-size: 14px;
-    text-align:center;
-    padding-left: 5px;
-    padding-right: 5px;
- }
- 
- #bottom-links > p {
-     font-size: 12px;
-    text-align:center;
-    margin-top: 0px;
-    padding-left: 7%;
-    padding-right: 7%;
- }
- 
- #bottom-links > img {
-     opacity: 0.4;
-     margin-bottom: 10%;
- }
- 
- #bottom-links:hover {
-     box-shadow: 0 4px 8px 0 rgba(60,182,226, 0.4);
- }
- 
- #bottom-links>img:hover {
-     opacity: 0.7;
- }
- 
-
-/* Progress Bars */
-
-progress[value]::-webkit-progress-bar {
-	background-color: #eeeeee5e;
-	border-radius: 2px;
-	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
-}
-
-progress[value]::-webkit-progress-value {
-  background-image:
-	   -webkit-linear-gradient(-45deg, 
-	                           transparent 33%, rgba(0, 0, 0, .1) 33%, 
-	                           rgba(0,0, 0, .1) 66%, transparent 66%),
-	   -webkit-linear-gradient(top, 
-	                           rgba(255, 255, 255, .25), 
-	                           rgba(0, 0, 0, .25)),
-	   -webkit-linear-gradient(left, #09c, #f44);
-
-    border-radius: 2px; 
-    background-size: 35px 20px, 100% 100%, 100% 100%;
-}
-
-
-
-
-
-
-
-
