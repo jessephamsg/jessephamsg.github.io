@@ -45,7 +45,7 @@ Ajax: for API connections
 ### Know what the app is about
 As a user, I need to know what this app is about and receive basic instructions on how to navigate the app
 
-![Wireframes](Screenshot 2020-05-03 01.03.26)
+![Wireframes](https://github.com/jessephamsg/jessephamsg.github.io/blob/master/Wireframes/Screenshot%202020-05-03%2001.03.26.png)
 
 ### Add Job(s)
 As a user, I would like to be able to key in details of my jobs/ hobbies/ activities
