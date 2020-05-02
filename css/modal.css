@@ -15,11 +15,10 @@
 }
 
 .modal-content, .modal-exp-body, .modal-welcome-body {
-    background-color: rgb(8,28,65);
-    border: 0.5px solid rgb(60,182,226);
+    background-image: linear-gradient(to bottom, rgba(44, 99, 129),rgba(52, 76, 126),rgba(58, 48,110));
 	height: 70%;
 	width: 50%;
-    border-radius: 2px;
+    border-radius: 10px;
     margin: 150px auto;
     color: white;
 	box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
@@ -28,6 +27,7 @@
 .modal-content > h3 {
     margin-left: 5%;
     margin-top: 7%;
+    padding-top: 7%;
 }
 
 .modal-content > button {
@@ -41,6 +41,9 @@
     transition: none;
 }
 
+.modal-exp-head>h3 {
+	padding-top: 7%;
+}
 
 .modal-welcome-head {
 	margin-left: 5%;
@@ -50,6 +53,7 @@
 
 .modal-welcome-head>h3 {
 	font-size: 20px;
+	padding-top: 7%;
 }
 
 .modal-welcome-head>p {
@@ -76,14 +80,14 @@
 
 .card-wrapper {
     width: 100%;
-    background-color: rgba(8, 28, 65, 0.5);
-    border: 0.5px solid rgba(60,182,226, 0.5);
+    background-image: linear-gradient(to right, rgba(44, 99, 129),rgba(52, 76, 126),rgba(58, 48,110));
     padding-top: 10px;
     padding-bottom: 10px;
     padding-right: 10px;
     padding-left: 10px;
     font-size: 10px;
     margin-top: 5px;
+    border-radius: 5px;
 }
 
 .card-header {
@@ -94,7 +98,7 @@
 }
 
 .card-title {
-    color: rgba(60,182,226, 1);
+    color: rgb(122, 221, 214);
     font-size: 15px;
     padding-right: 10px;
     padding-left: 10px;
@@ -103,7 +107,8 @@
 .card-label {
     width: 30%;
     height: 10%;
-    border: 0.5px solid rgb(60,182,226, 0.7);
+    background-color: rgb(122, 221, 214);
+    color: rgba(58, 48,110);
     padding-top: 5px;
     padding-bottom: 5px;
     border-radius: 5px;
