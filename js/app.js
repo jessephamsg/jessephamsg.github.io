@@ -122,9 +122,21 @@ const instructions = {
         teamSize: 'Team refers to those working closely with you (i.e. not company size unless you work closely with the whole company!)',
         taskEnjoyment: 'This is for you to indicate how much you enjoy doing a specific task: 1 is the lowest level of enjoyment, 5 is the highest',
         taskNature: `Create: tasks categorised as Create involve establishing something new \nOrganise: tasks that involve \nInfluence: \nResearch:`
+    },
+    welcomeMsg: {
+        header: 'ABOUT UNIK',
+        paragraphOne: 'Unik is a Skill Profiler platform. Simply put in your work (and hobbies too!) details, and get an overview of where you are in your work and life experience - things that spark joy, tasks you do, and how they contribute to your job match.\nAnd what if you don\'t like your match and prefer charting a path of your own based on your own interests? Explore learning experience out there from within the Unik platform. Basically, have fun, stay foolish, and be authentically you! \nBefore you start, note the following details for best experience with the platform',
+        paragraphTwo: 'DISPLAY: the platform on Google Chrome. No Safari please!',
+        paragraphThree: 'DISPLAY: on full Desktop screen',
+        paragraphFour: 'INSTALL: Moesif CORS Plugin',
+        paragraphFive: 'REZIZE: the browser to smaller size, when the chart suddenly disppears. The chart feature is not stable yet so this is a quick fix!',
+        paragraphSix: 'You\'re now ready!',
     }
 };
 
+const imageAssets = {
+
+}
 
 //=============================
 //BUILD PAGE MAIN FUNCTION
@@ -300,7 +312,7 @@ const pageBuilder = {
         $(`.${modalSection.elementClass}`).css('display', 'none');
     },
 
-    buildTooltip () {
+    buildTooltip() {
 
         //Access Page Construct Data
         let profileFieldLabel = instructions.profilePage.profileFieldLabel;
@@ -309,13 +321,41 @@ const pageBuilder = {
 
         //Generate Tooltips
         let labelArr = [profileFieldLabel.workDuration, profileFieldLabel.teamSize, modalLabel.feelingDescription, modalLabel.taskType];
-        let tooltipIdArr = ['work-duration-tooltip', 'team-size-tooltip','task-enjoyment-tooltip', 'task-nature-tooltip' ];
+        let tooltipIdArr = ['work-duration-tooltip', 'team-size-tooltip', 'task-enjoyment-tooltip', 'task-nature-tooltip'];
         let tooltipTextArr = [tooltipText.workDuration, tooltipText.teamSize, tooltipText.taskEnjoyment, tooltipText.taskNature];
 
-        for (let i = 0; i< labelArr.length; i++) {
+        for (let i = 0; i < labelArr.length; i++) {
             elementFormatter.formatTooltip(labelArr[i], tooltipIdArr[i], tooltipTextArr[i]);
         }
-        $('#task-nature-tooltip-text').html($('#task-nature-tooltip-text').html().replace(/\n/g,'<br/>'));
+        $('#task-nature-tooltip-text').html($('#task-nature-tooltip-text').html().replace(/\n/g, '<br/>'));
+    },
+
+    buildWelcomeMsg() {
+
+        //Create Main Elements
+        let welcomeModalWrapper = new bodyElement('div', 'container', 'modal-welcome');
+        let welcomeModalMainBody = new bodyElement('div', 'modal-welcome', 'modal-welcome-body');
+        let welcomeModalHead = new bodyElement('div', 'modal-welcome-body', 'modal-welcome-head');
+        let welcomeModalFooter = new bodyElement('div', 'modal-welcome-body', 'modal-welcome-footer');
+
+        //Build Main Elements
+        let welcomeModalElements = {welcomeModalWrapper, welcomeModalMainBody, welcomeModalHead, welcomeModalFooter}; 
+        for (key in welcomeModalElements) {
+            elementFormatter.formatElement(welcomeModalElements[key].elementTagName, welcomeModalElements[key].elementParentIdentifier, '', welcomeModalElements[key].elementClass);
+        }
+        elementFormatter.formatButton(welcomeModalFooter.elementClass, instructions.profilePage.buttonText.closeModal, pageBuilder.closeWelcomeModal);
+
+        //Build Body Content
+        let messageTagComponents = ['h3','p', 'div', 'div', 'div', 'div', 'p'];
+        let welcomeMsgKeys = Object.keys(instructions.welcomeMsg);
+        for (let i = 0; i< messageTagComponents.length; i++) {
+            elementFormatter.formatElement(messageTagComponents[i], welcomeModalHead.elementClass, instructions.welcomeMsg[welcomeMsgKeys[i]], `welcome-msg-${welcomeMsgKeys[i]}`);
+        }
+        $(`.${welcomeModalHead.elementClass}`).html($(`.${welcomeModalHead.elementClass}`).html().replace(/\n/g, '<br/>'));
+    },
+
+    closeWelcomeModal () {
+        $(`.modal-welcome`).css('display', 'none');
     }
 }
 
@@ -364,14 +404,14 @@ const elementFormatter = {
             $(`#${inputId}`).append(options.text(`${option}`).attr('value', `${option}`));
         });
     },
-    
+
     formatButton(inputParentClassName, labelText, callback) {
-        
+
         let button = this.formatElement('button', inputParentClassName, labelText, '');
         button.on('click', callback)
     },
 
-    formatTooltip (labelText, tooltipId, tooltipText) {
+    formatTooltip(labelText, tooltipId, tooltipText) {
 
         $(`label:contains(${labelText})`).append($('<div>').text('i').attr('id', `${tooltipId}`));
         $(`#${tooltipId}`).append($('<span>').text(tooltipText).attr('id', `${tooltipId}-text`));
@@ -380,5 +420,6 @@ const elementFormatter = {
 
 
 $(() => {
+    pageBuilder.buildWelcomeMsg();
     buildPage();
 })

@@ -3,7 +3,7 @@
 
 /* Modals */
 
-.modal, .modal-exp {
+.modal, .modal-exp, .modal-welcome {
 	background-color: rgba(0,0,0,0.8);
 	position: fixed;
 	top: 0;
@@ -14,7 +14,7 @@
 	overflow: auto;
 }
 
-.modal-content, .modal-exp-body {
+.modal-content, .modal-exp-body, .modal-welcome-body {
     background-color: rgb(8,28,65);
     border: 0.5px solid rgb(60,182,226);
 	height: 70%;
@@ -39,6 +39,36 @@
     margin-left: 5%;
     width: 90%;
     transition: none;
+}
+
+
+.modal-welcome-head {
+	margin-left: 5%;
+	margin-right: 5%;
+	color: #f0f8ffb8;
+}
+
+.modal-welcome-head>h3 {
+	font-size: 20px;
+}
+
+.modal-welcome-head>p {
+	font-size: 15px;
+	line-height: 21px;
+}
+
+.modal-welcome-head>div {
+	background-color: rgba(4, 5, 7, 0.48);
+	margin-bottom: 3px;
+	border-radius: 8px;
+	padding: 10px;
+	font-size: 14px;
+	line-height: 19px;
+}
+
+.modal-welcome-footer>button {
+	margin-left: 5%;
+	margin-top: 10px;
 }
 
 
