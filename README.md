@@ -44,7 +44,8 @@ Ajax: for API connections
 
 ### Know what the app is about
 As a user, I need to know what this app is about and receive basic instructions on how to navigate the app
-<a href = 'https://www.dropbox.com/s/h8599xz1ozfl4di/Screenshot%202020-05-03%2001.03.26.png?dl=0' target = '_blank'><img src='https://www.dropbox.com/s/h8599xz1ozfl4di/Screenshot%202020-05-03%2001.03.26.png?dl=0' width='100%'></a>
+
+![Wireframes](Screenshot 2020-05-03 01.03.26)
 
 ### Add Job(s)
 As a user, I would like to be able to key in details of my jobs/ hobbies/ activities
