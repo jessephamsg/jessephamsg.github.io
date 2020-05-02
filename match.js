@@ -2,6 +2,7 @@ let charactersWithImage = [];
 
 
 const getHeroesData = () => {
+
     let characterArr = [];
     for (let i = 0; i < 200; i++) {
         $.ajax({
@@ -11,7 +12,6 @@ const getHeroesData = () => {
                 characterObject = { ...data };
                 characterArr.push(characterObject);
                 charactersWithImage = characterArr.filter(character => character.response === 'success');
-                console.log(charactersWithImage);
                 calculateDelta(charactersWithImage);
             }
         });
@@ -20,17 +20,28 @@ const getHeroesData = () => {
 
 
 const calculateDelta = (array) => {
+
     let deltaToSuperHeroes = [];
+
     for (let i = 0; i < array.length; i++) {
-        let createDelta = 0;
-        let influenceDelta = 0;
-        let researchDelta = 0;
-        let organiseDelta = 0;
-        (radarChartData.data.create) ? createDelta = parseInt(radarChartData.data.create) - parseInt(array[i].powerstats.speed) : createDelta = parseInt(array[i].powerstats.speed);
-        (radarChartData.data.influence) ? influenceDelta = parseInt(radarChartData.data.influence) - parseInt(array[i].powerstats.power) : influenceDelta = parseInt(array[i].powerstats.power);
-        (radarChartData.data.research) ? researchDelta = parseInt(radarChartData.data.research) - parseInt(array[i].powerstats.intelligence) : researchDelta = parseInt(array[i].powerstats.intelligence);
-        (radarChartData.data.organise) ? organiseDelta = parseInt(radarChartData.data.organise) - parseInt(array[i].powerstats.combat) : organiseDelta = parseInt(array[i].powerstats.combat);
-        let averageDelta = (createDelta + influenceDelta + researchDelta + organiseDelta) / 4;
+
+        //Calculate Delta// for each data point received
+        let deltaArr = {createDelta: 0, influenceDelta: 0, researchDelta: 0, organiseDelta:0}
+        let radarChartDataKeys = ['create', 'influence', 'research', 'organise'];
+        let powerstatsKeys = ['speed', 'power', 'intelligence', 'combat'];
+        let deltaArrKeys = Object.keys(deltaArr);
+        for (let j = 0; j < radarChartDataKeys.length; j++) {
+            (radarChartData.data[radarChartDataKeys[j]]) ? deltaArr[deltaArr[j]] = parseInt(radarChartData.data[radarChartDataKeys[j]]) - parseInt(array[i].powerstats[powerstatsKeys[j]]) : deltaArr[deltaArr[j]] = parseInt(array[i].powerstats[powerstatsKeys[j]]);
+        }
+
+        //Calculate Average Delta// for each data point received
+        let sum = 0;
+        for (let key in deltaArr) {
+            sum = sum + deltaArr[key];
+        }
+        let averageDelta = sum / deltaArrKeys.length;
+
+        //Create New Object// with each data point received
         let newObject = new Object();
         newObject.delta = averageDelta;
         newObject.name = array[i].name;
@@ -40,6 +51,8 @@ const calculateDelta = (array) => {
         newObject.influence = array[i].powerstats.power;
         newObject.organise = array[i].powerstats.combat;
         newObject.work = array[i].work.occupation;
+
+        //Push into new Array of SuperHeroes
         deltaToSuperHeroes.push(newObject);
     };
     getMinimumDelta(deltaToSuperHeroes);
@@ -47,7 +60,11 @@ const calculateDelta = (array) => {
 
 
 const getMinimumDelta = (array) => {
+
+    //Filter for only Valid Delta
     let filteredArr = array.filter(data => isNaN(data.delta) === false);
+
+    //Find the Min Delta
     let min = 100;
     for (let i = 0; i < filteredArr.length; i++) {
         filteredArr[i].delta < min ? min = filteredArr[i].delta : min;
@@ -59,11 +76,13 @@ const getMinimumDelta = (array) => {
 
 
 const buildMatchComponents = () => {
+
     $('.middle-section').append($('<div>').attr('id', 'bottom-links'));
 }
 
 
 const renderMatchedProfile = (object) => {
+    
     $('#bottom-links').empty();
     $('#bottom-links').append($('<h4>').text('Your Closest Job Profile Match'));
     $('#bottom-links').append($('<p>').text(object.work));

@@ -166,16 +166,17 @@ button {
 }
 
 #task-description {
-    height: 30%;
+    height: 27%;
 }
 
 .modal-content > h3 {
     margin-left: 5%;
+    margin-top: 7%;
 }
 
 .modal-content > button {
     margin-left: 5%;
-    margin-top: 5%;
+    margin-top: 3%;
 }
 
 .modal-content > input {
@@ -614,20 +615,21 @@ progress[value]::-webkit-progress-value {
 	box-shadow: 0 4px 8px 5px rgba(239, 243, 245, 0.2);
 }
 
-.modal-exp-body>.card-wrapper {
-	width: 90%;
-	margin-left: 2.5%;
+.modal-exp-head>.card-wrapper {
+	width: 87%;
+	margin-left: 5%;
 }
 
-.modal-exp-body>.card-label {
+.modal-exp-head>.card-label {
 	width: 70%;
 }
 
-.modal-exp-body> h3 {
-	margin-left: 2.5%;
+.modal-exp-head> h3 {
+	margin-left: 5%;
+	margin-top: 7%;
 }
 
 .modal-footer>button {
 	margin-top: 10%;
-	margin-left: 2.5%;
+	margin-left: 5%;
 }

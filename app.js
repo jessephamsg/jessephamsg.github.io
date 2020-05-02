@@ -137,6 +137,7 @@ const buildPage = () => {
     pageBuilder.buildProfileContent();
     pageBuilder.buildFormContent();
     pageBuilder.buildModalContent();
+    pageBuilder.buildTooltip();
 }
 
 
@@ -155,9 +156,7 @@ const pageBuilder = {
         }
         buildStatsComponents();
         buildMatchComponents();
-        elementFormatter.formatElement('div', 'middle-section', '', 'explore-opportunities');
-        $('.explore-opportunities').append($('<img>').attr('src', 'https://pngimage.net/wp-content/uploads/2018/05/experience-png-6.png'));
-        $('.explore-opportunities').on('click', buildGainExpModal);
+        buildGainExpComponent();
     },
 
     buildNavContent() {
@@ -240,11 +239,6 @@ const pageBuilder = {
         for (let key in dropdownLists) {
             elementFormatter.formatSelection(dropdownLists[key].dataSource, selectChildren[key].elementParentIdentifier, dropdownLists[key].text, selectChildren[key].elementClass);
         }
-
-        $(`label:contains(${profileFieldLabel.workDuration})`).append($('<div>').text('i').attr('id', 'work-duration-tooltip'));
-        $('#work-duration-tooltip').append($('<span>').text(instructions.tooltip.workDuration).attr('id', 'work-duration-tooltip-text'));
-        $(`label:contains(${profileFieldLabel.teamSize})`).append($('<div>').text('i').attr('id', 'team-size-tooltip'));
-        $('#team-size-tooltip').append($('<span>').text(instructions.tooltip.teamSize).attr('id', 'team-size-tooltip-text'));
     },
 
     createFormRightSide() {
@@ -304,13 +298,25 @@ const pageBuilder = {
             elementFormatter.formatButton(modalParentClass, buttons[key].text, buttons[key].callback);
         }
         $(`.${modalSection.elementClass}`).css('display', 'none');
-
-        $(`label:contains(${modalLabel.feelingDescription})`).append($('<div>').text('i').attr('id', 'task-enjoyment-tooltip'));
-        $('#task-enjoyment-tooltip').append($('<span>').text(instructions.tooltip.taskEnjoyment).attr('id', 'task-enjoyment-tooltip-text'));
-        $(`label:contains(${modalLabel.taskType})`).append($('<div>').text('i').attr('id', 'task-nature-tooltip'));
-        $('#task-nature-tooltip').append($('<span>').text(instructions.tooltip.taskNature).attr('id', 'task-nature-tooltip-text'));
-        $('#task-nature-tooltip-text').html($('#task-nature-tooltip-text').html().replace(/\n/g,'<br/>'));
     },
+
+    buildTooltip () {
+
+        //Access Page Construct Data
+        let profileFieldLabel = instructions.profilePage.profileFieldLabel;
+        let modalLabel = instructions.modalPage.dropdownLabel;
+        let tooltipText = instructions.tooltip;
+
+        //Generate Tooltips
+        let labelArr = [profileFieldLabel.workDuration, profileFieldLabel.teamSize, modalLabel.feelingDescription, modalLabel.taskType];
+        let tooltipIdArr = ['work-duration-tooltip', 'team-size-tooltip','task-enjoyment-tooltip', 'task-nature-tooltip' ];
+        let tooltipTextArr = [tooltipText.workDuration, tooltipText.teamSize, tooltipText.taskEnjoyment, tooltipText.taskNature];
+
+        for (let i = 0; i< labelArr.length; i++) {
+            elementFormatter.formatTooltip(labelArr[i], tooltipIdArr[i], tooltipTextArr[i]);
+        }
+        $('#task-nature-tooltip-text').html($('#task-nature-tooltip-text').html().replace(/\n/g,'<br/>'));
+    }
 }
 
 
@@ -364,6 +370,12 @@ const elementFormatter = {
         let button = this.formatElement('button', inputParentClassName, labelText, '');
         button.on('click', callback)
     },
+
+    formatTooltip (labelText, tooltipId, tooltipText) {
+
+        $(`label:contains(${labelText})`).append($('<div>').text('i').attr('id', `${tooltipId}`));
+        $(`#${tooltipId}`).append($('<span>').text(tooltipText).attr('id', `${tooltipId}-text`));
+    }
 }
 
 

@@ -54,11 +54,7 @@ const renderInput = {
 
     createJobButton(workTitle) {
 
-        //Add Job Button to the Profile Section
-        /**
-         * A Job Button is added after a user saves a new job
-         * Use this Job Button to access details of the job previously added
-         */
+        //Add Job Button to the Profile Section// (1) A Job Button is added after a user saves a new job (2) Use this Job Button to access details of the job previously added
         let button = $('<button>');
         $(`.${pageConstruct.bottomSection.leftSection.elementClass}`).append(button.text(workTitle));
         button.on('click', this.showJobDetails);
@@ -66,38 +62,22 @@ const renderInput = {
 
     showJobDetails() {
 
-        //Retrieve Data from the Correct Job Object 
-        /**
-         * Matching text on the clicked Job Button with the Work Titles in the workProfile Oject
-         * Loop through the workProfile object to find the match 
-         */
+        //Retrieve Data from the Correct Job Object// (1) Matching text on the clicked Job Button with the Work Titles in the workProfile Oject (2) Loop through the workProfile object to find the match 
         let workTitle = $(event.currentTarget).text();
         let index = 0;
         for (let i = 0; i < workProfile.length; i++) {
             if (workProfile[i].workTitle === workTitle) index = i;
         }
 
-        //Make All Inputs Editable Except Work Title
-        /**
-         * Currently, Work Title can't be changed because of Work Title Matching mechanism
-         */
+        //Make All Inputs Editable Except Work Title// (1) Currently, Work Title can't be changed because of Work Title Matching mechanism
         $('input').prop('readonly', false);
         $('option').prop("disabled", false);
         $('#work-title').prop("readonly", true);
 
-        //Restore Form to Its Full Color 
-        /**
-         * Form fades when it is disabled
-         * Form restores color when it is enabled
-         */
+        //Restore Form to Its Full Color// (1) Form fades when it is disabled (2) Form restores color when it is enabled
         $('.right-section').css('opacity', '1');
 
-        //Retrieve Values from the Identified workProfile Object 
-        /**
-         * Assign these values to the form fields
-         * Area containing task cards is emptied
-         * Add relevant task cards in its place
-         */
+        //Retrieve Values from the Identified workProfile Object// (1) Assign these values to the form fields (2) Area containing task cards is emptied (3) Add relevant task cards in its place
         for (let i = 0; i < formIds.workIds.length; i++) {
             $(`${formIds.workIds[i]}`).val(workProfile[index][formIds.workKeys[i]]);
         }
@@ -110,67 +90,51 @@ const renderInput = {
         $(`button:contains(${instructions.profilePage.buttonText.saveEdits})`).css('display', 'block');
         $(`button:contains(${instructions.profilePage.buttonText.saveJob})`).css('display', 'none');
 
-        //Highlight Clicked Button
-        /**
-         * Clicked button's background turns Cyan Green to help user easily remember which button was clicked
-         * Other buttons remain the same
-         */
+        //Highlight Clicked Button// (1) Clicked button's background turns Cyan Green to help user easily remember which button was clicked (2) Other buttons remain the same
         $(`button`).css('background-color', 'rgba(0, 0, 0, 0)').css('color', 'white');
         $(`button:contains(${workTitle})`).css('background-color', 'rgba(94, 205, 191)').css('color', 'white');
     },
 
     showHistoricalTasks(taskEnjoyment, taskTitle, taskNature, taskDescription, index) {
 
-        //Show All Tasks Added Previously
-        /**
-         * Function Function is triggered when user clicks on one of the Job button to view their job details 
-         */
-        workObjectFormatter.showTask(taskEnjoyment, taskTitle, taskNature, taskDescription, index);
+        //Show All Tasks Added Previously// (1) Function Function is triggered when user clicks on one of the Job button to view their job details 
+        workObjectFormatter.showTask('form-right-body', taskEnjoyment, taskTitle, taskNature, taskDescription, 'card', index);
     },
 
     updateTask(taskEnjoyment, taskTitle, taskNature, taskDescription) {
 
-        //Identify Work Object to be Updated
-        /**
-         * Match Work Title currently shown in the Work Title Text field with the records in workProfile Object
-         * Loop through the workProfile object to find the match
-         */
+        //Identify Work Object to be Updated// (1) Match Work Title currently shown in the Work Title Text field with the records in workProfile Object (2) Loop through the workProfile object to find the match
         let workTitle = $('#work-title').val();
         let j = 0;
         for (let i = 0; i < workProfile.length; i++) {
             if (workProfile[i].workTitle === workTitle) j = i;
         }
 
-        //Add a New Task Card to The Identified Work Object 
-        /**
-         * Get index to pass into showTask function
-         * This ensures that each card can be identified by their unique index
-         * Index is the length of Task Title
-         */
+        //Add a New Task Card to The Identified Work Object// (1) Get index to pass into showTask function (2) This ensures that each card can be identified by their unique index (3) Index is the length of Task Title
         let index = workProfile[j].taskTitle.length - 1;
-        workObjectFormatter.showTask(taskEnjoyment, taskTitle, taskNature, taskDescription, index);
+        workObjectFormatter.showTask('form-right-body', taskEnjoyment, taskTitle, taskNature, taskDescription, 'card', index);
     },
 }
 
 const workObjectFormatter = {
 
-    showTask(taskEnjoyment, taskTitle, taskNature, taskDescription, index) {
+    showTask(taskParentClass, taskEnjoyment, taskTitle, taskNature, taskDescription, id, index) {
 
         //Create Card Wrapper
-        let cardWrapper = $('<div>').attr('id', `card-wrapper-${index}`).addClass('card-wrapper');
+        let cardWrapper = $('<div>').attr('id', `${id}-wrapper-${index}`).addClass('card-wrapper');
 
         //Create Card Header
-        let cardHeader = $('<div>').attr('id', `card-header-${index}`).addClass('card-header');
-        let cardIcon = $('<div>').attr('id', `card-icon-${index}`).addClass('card-icon').text(taskEnjoyment);
-        let cardTitle = $('<div>').attr('id', `card-title-${index}`).addClass('card-title').text(taskTitle);
-        let cardLabel = $('<div>').attr('id', `card-label-${index}`).addClass('card-label').text(taskNature);
+        let cardHeader = $('<div>').attr('id', `${id}-header-${index}`).addClass('card-header');
+        let cardIcon = $('<div>').attr('id', `${id}-icon-${index}`).addClass('card-icon').text(taskEnjoyment);
+        let cardTitle = $('<div>').attr('id', `${id}-title-${index}`).addClass('card-title').text(taskTitle);
+        let cardLabel = $('<div>').attr('id', `${id}-label-${index}`).addClass('card-label').text(taskNature);
 
         //Create Card Body
-        let cardBody = $('<div>').attr('id', `card-body-${index}`).addClass('card-body').text(taskDescription.substring(0, 100));
-        let cardHyperlink = $('<a>').attr('id', `card-hyperlink-${index}`).addClass('card-hyperlink').text('See More');
+        let cardBody = $('<div>').attr('id', `${id}-body-${index}`).addClass('card-body').text(taskDescription.substring(0, 100));
+        let cardHyperlink = $('<a>').attr('id', `${id}-hyperlink-${index}`).addClass('card-hyperlink').text('See More');
 
         //Append All Components Together
-        $('.form-right-body').append(cardWrapper);
+        $(`.${taskParentClass}`).append(cardWrapper);
         cardWrapper.append(cardHeader.append(cardIcon, cardTitle, cardLabel));
         cardWrapper.append(cardBody.append(cardHyperlink));
     },
@@ -205,7 +169,6 @@ const entryChecker = {
         for(let i = 0; i < stringArr.length; i++) {
             stringArr[i] === '0' ? stringArr[i] = '1' : stringArr[i];
         }
-        console.log(stringArr);
         (stringArr.every((item) => parseInt(item))) ? instruction.css('display', 'none') : instruction.css('display', 'block');
     },
 
@@ -264,25 +227,14 @@ const navigationalController = {
 
     launchForm() {
 
-        //Show New Form
-        /**
-         * Clear all previous inputs
-         * Make all inputs editable
-         * Restore form's full color
-         */
+        //Show New Form// (1) Clear all previous inputs (2) Make all inputs editable (3) Restore form's full color
         workObjectFormatter.clearInputs(['input', 'select']);
         $('.form-right-body').empty();
         $('input').prop("readonly", false);
         $('option').prop("disabled", false);
         $('.right-section').css('opacity', '1');
 
-        //Hide and Disable All Buttons
-        /**
-         * Hide Save Jobs button until user inputs data into the form
-         * This is to prevent users from saving multiple empty objects into the workProfile
-         * Hide Save Edits button
-         * All Disabled Buttons fade in color 
-         */
+        //Hide and Disable All Buttons// (1) Hide Save Jobs button until user inputs data into the form (2) This is to prevent users from saving multiple empty objects into the workProfile (3) Hide Save Edits button (4) All Disabled Buttons fade in color 
         $(`button:contains(${instructions.profilePage.buttonText.saveEdits})`).css('display', 'none');
         $(`button:contains(${instructions.profilePage.buttonText.saveJob})`).css('display', 'none');
         $(`button`).css('background-color', 'rgba(0, 0, 0, 0)').css('color', 'white');
@@ -297,17 +249,11 @@ const navigationalController = {
         //Create a New Work Object
         const workItem = new Work('', '', '', '', '', [], [], [], []);
         workProfile.push(workItem);
-        console.log(workProfile);
     },
 
     saveForm() {
 
-        //Update Work Object
-        /**
-         * Update Work Title, Work Duration, Team Size, Work Nature, and Work Industry into the object properties
-         * Get user's inputs for those fields
-         * Assign the values on those fields into the object
-         */
+        //Update Work Object// (1) Update Work Title, Work Duration, Team Size, Work Nature, and Work Industry into the object properties (2) Get user's inputs for those fields (3) Assign the values on those fields into the object
         let index = 0;
         for (let key in workProfile[workProfile.length - 1]) {
             if (key === formIds.workKeys[index]) {
@@ -316,30 +262,17 @@ const navigationalController = {
             }
         }
 
-        //Create A New Job Button in Profile Section
-        /**
-         * This button allows user to see the full details of job entries 
-         */
-        console.log(workProfile);
+        //Create A New Job Button in Profile Section// (1) This button allows user to see the full details of job entries 
         renderInput.createJobButton(workProfile[workProfile.length - 1].workTitle);
 
-        //Diable Form
-        /**
-         * Disallow users to change the form input once submitted
-         * Disallow users to click Save Job once the form is submitted
-         * Form fades to signal Disabled mode
-         * Enable all other buttons not relating to Form
-         */
+        //Diable Form// (1) Disallow users to change the form input once submitted (2) Disallow users to click Save Job once the form is submitted (3) Form fades to signal Disabled mode (4) Enable all other buttons not relating to Form
         $('input').prop("readonly", true);
         $('option').prop("disabled", true);
         $(`button:contains(${instructions.profilePage.buttonText.saveJob})`).css('display', 'none');
         $('button').attr('disabled', false);
         $('button').css('opacity', '1');
 
-        //Clear All Form Inputs & Update All Stats
-        /**
-         * Clear all form inputs once a job is saved
-         */
+        //Clear All Form Inputs & Update All Stats// (1) Clear all form inputs once a job is saved
         workObjectFormatter.clearInputs(['input', 'select']);
         $('.form-right-body').empty();
         $('.right-section').css('opacity', '0.4');
@@ -360,10 +293,7 @@ const navigationalController = {
         $('button').attr('disabled', false);
         $('button').css('opacity', '1');
 
-        //Check for Empty Fields
-        /**
-         * for Work Title, Work Duration, Team Size, Work Nature, Work Industry
-         */
+        //Check for Empty Fields// (1) for Work Title, Work Duration, Team Size, Work Nature, Work Industry
         for (let i = 0; i< formIds.workIds.length; i ++) {
             entryChecker.hasEmptyField(formIds.workIds[i], errorMessage[Object.keys(errorMessage)[3]]);
         };
@@ -379,12 +309,7 @@ const navigationalController = {
         $('button').attr('disabled', false);
         $('button').css('opacity', '1');
 
-        //Identify the Correct Task Array
-        /**
-         * Identify the Work Object by Work Title Name Matching
-         * If no match is found, the Tasks created belong to a new Work Object. They will be simply pushed to an empty Task array of the last Work Object in workProfile array
-         * If a match is found, the Tasks created belong to one of the existing work objects. Get index of that work object 
-         */
+        //Identify the Correct Task Array// (1) Identify the Work Object by Work Title Name Matching (2) If no match is found, the Tasks created belong to a new Work Object. They will be simply pushed to an empty Task array of the last Work Object in workProfile array (3) If found, the Tasks created belong to one of the existing work objects. Get index of that work object 
         let workTitle = $('#work-title').val();
         let j = 0;
         let test = false;
@@ -397,10 +322,7 @@ const navigationalController = {
         }
         (result === 0 && test === false) ? j = workProfile.length - 1 : j = result;
 
-        //Update The Identified Task Array
-        /**
-         * Using the correct task Ids
-         */
+        //Update The Identified Task Array// (1) Using the correct task Ids
         let index = 0;
         for (let key in workProfile[j]) {
             if (key === formIds.taskKeys[index]) {
@@ -409,20 +331,11 @@ const navigationalController = {
             }
         }
 
-        //Create Task Cards
-        /**
-         * For every new task update, create a task card and attach it to the form body
-         * Empty the form body before attaching
-         */
-        console.log(workProfile);
+        //Create Task Cards// (1) For every new task update, create a task card and attach it to the form body (2) Empty the form body before attaching
         renderInput.updateTask(workProfile[j].taskEnjoyment.slice(-1)[0], workProfile[j].taskTitle.slice(-1)[0], workProfile[j].taskNature.slice(-1)[0], workProfile[j].taskDescription.slice(-1)[0]);
         workObjectFormatter.clearInputs(formIds.taskIds);
 
-        //Enable/Disable Save As New Job Button
-        /**
-         * If a task is added to a new work object, display Save Job Button
-         * If a task is added to one of the existing work objects, hide Save Job button, display Save Edits button  
-         */
+        //Enable or Disable Save As New Job Button// (1) If a task is added to a new work object, display Save Job Button (2) If a task is added to one of the existing work objects, hide Save Job button, display Save Edits button  
         let buttonWithTheSameTitle = $(`button:contains(${workTitle})`).length;
         if (buttonWithTheSameTitle > 0 && workTitle !== "") {
             $(`button:contains(${instructions.profilePage.buttonText.saveJob})`).css('display', 'none');
@@ -437,20 +350,14 @@ const navigationalController = {
         $('button').attr('disabled', false);
         $('button').css('opacity', '1');
 
-        //Identify Work Object to be Updated 
-        /**
-         * Match names of the Work Title on the form shown with the Work Title in the workProfile array
-         */
+        //Identify Work Object to be Updated// (1) Match names of the Work Title on the form shown with the Work Title in the workProfile array
         let workTitle = $('#work-title').val();
         let index = 0;
         for (let i = 0; i < workProfile.length; i++) {
             if (workProfile[i].workTitle === workTitle) index = i;
         }
 
-        //Update Values of the Identified Work Object, Update Stats & Alert
-        /**
-         * Set work object properties to the new values received on the form
-         */
+        //Update Values of the Identified Work Object, Update Stats & Alert// (1) Set work object properties to the new values received on the form
         for (let i = 0; i < formIds.workIds.length; i++) {
             workProfile[index][formIds.workKeys[i]] = $(`${formIds.workIds[i]}`).val();
         }
