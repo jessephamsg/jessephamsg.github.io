@@ -1,0 +1,136 @@
+/* MODAL AND CARD ELEMENTS */
+
+
+/* Modals */
+
+.modal, .modal-exp {
+	background-color: rgba(0,0,0,0.8);
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	z-index: 3;
+	overflow: auto;
+}
+
+.modal-content, .modal-exp-body {
+    background-color: rgb(8,28,65);
+    border: 0.5px solid rgb(60,182,226);
+	height: 70%;
+	width: 50%;
+    border-radius: 2px;
+    margin: 150px auto;
+    color: white;
+	box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+}
+
+.modal-content > h3 {
+    margin-left: 5%;
+    margin-top: 7%;
+}
+
+.modal-content > button {
+    margin-left: 5%;
+    margin-top: 3%;
+}
+
+.modal-content > input {
+    margin-left: 5%;
+    width: 90%;
+    transition: none;
+}
+
+
+/* Card Elements */
+
+.card-wrapper {
+    width: 100%;
+    background-color: rgba(8, 28, 65, 0.5);
+    border: 0.5px solid rgba(60,182,226, 0.5);
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 10px;
+    padding-left: 10px;
+    font-size: 10px;
+    margin-top: 5px;
+}
+
+.card-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.card-title {
+    color: rgba(60,182,226, 1);
+    font-size: 15px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.card-label {
+    width: 30%;
+    height: 10%;
+    border: 0.5px solid rgb(60,182,226, 0.7);
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 7px;
+}
+
+.card-body {
+    font-size: 8px;
+    color: white;
+    padding-top: 6px;
+}
+
+.card-hyperlink {
+    color: rgb(60,182,226);
+    padding-left: 20px;
+}
+
+
+/* Explore Elements */
+
+.explore-opportunities {
+	position: absolute;
+	width: 70px;
+	height: 70px;
+	background-color: rgba(60, 182, 226, 0.21);
+	top: 16%;
+	left: 27%;
+	border-radius: 10px;
+	opacity: 0.7;
+	border: 1px solid rgba(60, 182, 226, 0.4);
+}
+
+.explore-opportunities > img {
+	width: 100%;
+	padding-top: 17%;
+}
+
+.explore-opportunities:hover {
+	box-shadow: 0 4px 8px 5px rgba(239, 243, 245, 0.2);
+}
+
+.modal-exp-head>.card-wrapper {
+	width: 87%;
+	margin-left: 5%;
+}
+
+.modal-exp-head>.card-label {
+	width: 70%;
+}
+
+.modal-exp-head> h3 {
+	margin-left: 5%;
+	margin-top: 7%;
+}
+
+.modal-footer>button {
+	margin-top: 10%;
+	margin-left: 5%;
+}

@@ -1,0 +1,122 @@
+/* MAIN BODY ELEMENTS */
+
+/* Global Styles */
+
+body {
+    display: block;
+    background-position: center;
+    font-family: 'Fira Sans', sans-serif;
+    background:linear-gradient( rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8) ),url('https://isarastrology.org/wp-content/uploads/2019/12/Depositphotos_30833343_xl-2015.jpg');
+    background-size: cover;
+    width: 100%;
+    height: 800px;
+}
+
+h1 {
+    margin-left: 40px;
+    font-size: 20px;
+    font-family: 'Fira Sans', sans-serif;
+}
+
+h2 {
+    color: rgb(60,182,226);
+}
+
+button {
+    background-color: rgba(0, 0, 0, 0);
+    padding: 5px 10px;
+    border-radius: 12px;
+    border: 0.5px solid rgba(94, 205, 191, 0.7);
+    color: white;
+}
+
+/* Top Navigation */
+
+.top-section {
+    display: flex;
+    color: white;
+    align-items: center;
+    width: 100%;
+    height: 7%;
+    background-image:linear-gradient(to left,rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8),  rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));
+    box-shadow: 10px 10px 5px grey;box-shadow: 10px 10px 70px rgba(60,182,226,0.3);
+}
+
+.nav-bar {
+	z-index: 2;
+	width: 30%;
+	display: flex;
+	flex-direction: column;
+	margin-top: 2%;
+	margin-left: 26%;
+	align-items: center;
+}
+
+.nav-bar > div {
+	font-size: 34px;
+	font-weight: bolder;
+	-webkit-text-stroke: 5px #e9eff5;
+	-webkit-text-fill-color: white;
+	text-shadow: 2px 2px 60px white;
+	letter-spacing: 4px;
+}
+
+.nav-bar > ul {
+    align-items: center;
+}
+
+
+.nav-logo {
+    width: 4%;
+}
+
+.nav-logo > img {
+    margin-left: 10px;
+    margin-right: 30px;
+    width: 100%;
+}
+
+#top-trapezoid {
+    border-top: 100px solid rgba(40, 188, 241, 0.84);
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    height: 0;
+    width: 30%;
+    filter: drop-shadow(0 0 40px rgb(60,182,226));
+    position: absolute;
+    z-index: 1;
+    top: 0%;
+    left: 35%;
+}
+
+/* Body Styling */
+
+.bottom-section {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 90%;
+    justify-content: center;
+    align-items: center;
+}
+
+.left-section > h2 {
+    margin-left: 10%;
+    font-size: 15px;
+    margin-top: 20%;
+    margin-bottom: 5px;
+}
+
+.right-section > h2 {
+    margin-left: 10px;
+    font-size: 15px;
+    margin-top: 20%;
+    margin-bottom: 5px;
+}
+
+canvas {
+    padding-top: 10%;
+}
+
+
+

@@ -2,6 +2,7 @@
 //DATA TO RELATED TO WORK
 //=============================
 
+
 const formIds = {
     workIds: ['#work-title', '#work-duration', '#team-size', '#work-nature-input', '#work-industry-input'],
     taskIds: ['#task-title', '#task-enjoyment', '#task-description', '#task-nature'],

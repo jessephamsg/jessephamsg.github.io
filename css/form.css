@@ -1,0 +1,199 @@
+/* FORM ELEMENTS */
+
+
+/* Input Styling */
+
+input {
+    width: 90%;
+    padding: 1px 10px;
+    margin: 4px 0;
+    box-sizing: border-box;
+    border-radius: 5px;
+    color:white;
+    border: 0.5px solid rgba(255, 255, 255, 0.5);
+    background: rgba(0, 0, 0, 0);
+    margin-bottom: 10px;
+    transition: width 0.4s ease-in-out;
+    margin-left: 10px;
+}
+
+select {
+    width: 100%;
+    height: 4%;
+    padding: 10px 5px;
+    border: none;
+    border-radius: 50px;
+    background-color: #f1f1f1;
+    margin-bottom: 10px;
+    margin-left: 5%;
+    margin-top: 10px;
+  }
+
+label {
+    margin-left: 5%;
+    margin-bottom: 0px;
+    font-size: 10px;
+    margin-top: 20px;
+    float: left;
+}
+
+input:focus {
+    width: 100%;
+}
+
+#task-nature, #task-enjoyment {
+    width: 90%;
+}
+
+#task-description {
+    height: 27%;
+}
+
+
+/* Form Body Styling */
+
+.form-body {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 95%;
+    color: white;
+    margin-left: 10px;
+}
+
+.left-section {
+    display: block;
+    width: 15%;
+    height: 100%;
+}
+
+.right-section {
+    align-items: flex-start;
+    flex-wrap: wrap;
+    width: 25%;
+    height: 100%;
+    margin-left: 10px;
+}
+
+.form-left {
+    width: 80%;
+    margin-top: 3%;
+    flex-basis: auto;
+}
+
+.form-right {
+    width: 80%;
+    height: 100%;
+    margin-left: 10px;
+}
+
+.form-right-header {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.form-footer {
+    display: flex;
+    justify-content: flex-start;
+    margin-left: 5%;
+    margin-top: 5%;
+}
+
+.form-footer > button {
+    margin-bottom: 10%;
+    margin-right: 5px;
+}
+
+.left-section > button {
+    margin-top: 7%;
+    margin-left: 10%;
+    width: 80%;
+}
+
+
+/* Form Error Message */
+
+#work-title+div {
+	color: red;
+	font-size: 9px;
+	margin-left:10%;
+}
+
+#work-duration+div {
+	color: red;
+	font-size: 9px;
+	margin-left:10%;
+}
+
+#team-size+div {
+	color: red;
+	font-size: 9px;
+	margin-left:10%;
+}
+
+#work-nature-input+div {
+	color: red;
+	font-size: 9px;
+	margin-left:10%;
+}
+
+#work-industry-input+div {
+	color: red;
+	font-size: 9px;
+	margin-left:10%;
+}
+
+
+/* Form Tooltip */
+
+#work-duration-tooltip, #team-size-tooltip, #task-enjoyment-tooltip, #task-nature-tooltip {
+	float: right;
+	background-color:#2faddd66;
+	width: 10px;
+	margin-left: 5px;
+	text-align: center;
+	font-style: italic;
+	border-radius: 2px;
+    vertical-align: middle;
+    position: relative;
+}
+
+#work-duration-tooltip-text, #team-size-tooltip-text, #task-enjoyment-tooltip-text, #task-nature-tooltip-text {
+	position: absolute;
+	visibility: hidden;
+	width: 180px;
+	background-color: #0f0512cf;
+	color: #ffffffc7;
+	font-size: 9px;
+	z-index: 1;
+	bottom: 150%;
+	margin-left: -30px;
+	left: 50%;
+	border-radius: 3px;
+	line-height: 13px;
+    padding: 3px;
+    text-align: left;
+
+}
+
+#task-enjoyment-tooltip-text, #task-nature-tooltip-text {
+    width: 300px;
+    margin-left: 10px;
+}
+
+#work-duration-tooltip:hover #work-duration-tooltip-text {
+	visibility: visible;
+}
+
+#team-size-tooltip:hover #team-size-tooltip-text {
+	visibility: visible;
+}
+
+#task-enjoyment-tooltip:hover #task-enjoyment-tooltip-text {
+	visibility: visible;
+}
+#task-nature-tooltip:hover #task-nature-tooltip-text {
+	visibility: visible;
+}

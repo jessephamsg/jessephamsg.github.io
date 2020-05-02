@@ -2,6 +2,7 @@
 //DATA TO CONSTRUCT 'GAIN EXPERIENCE' MODAL
 //=========================================
 
+
 class Point {
     constructor(createPoint, organisePoint, influencePoint,researchPoint ) {
         this.createPoint = createPoint;
@@ -12,17 +13,16 @@ class Point {
 }
 
 const links = {
-    taskTitle: ['Title 1', 'Title 2', 'Title 3'],
+    taskTitle: ['Challenge 1', 'Challenge 2', 'Challenge 3', 'Challenge 4', 'Challenge 5', 'Challenge 6'],
     taskNature: [
         new Point (12, 24, 10, 5),
         new Point (10, 12, 13, 25),
-        new Point (20, 11, 2, 26)
+        new Point (20, 11, 2, 26),
+        new Point (12, 24, 10, 5),
+        new Point (10, 12, 13, 25),
+        new Point (20, 11, 2, 26),
     ],
-    taskContent: [
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-    ]
+    taskContent: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
 }
 
 let expModalButton = new bodyElement('div', 'middle-section', 'explore-opportunities');
@@ -66,7 +66,7 @@ const buildGainExpModal = () => {
             labelContent.push(`${taskNatureOptions[index]}: ${links.taskNature[i][key]}`);
             index++;
         }
-        workObjectFormatter.showTask(expModalHead.elementClass, '', links.taskTitle[i], labelContent.join(' | '), links.taskContent[i], 'exp', i);
+        workObjectFormatter.showTask(expModalHead.elementClass, '', links.taskTitle[i], labelContent.join(' | '), links.taskContent, 'exp', i);
     }
     elementFormatter.formatButton(expModalFooter.elementClass, expInstructions.modalButton, closeExpModal);
 }
@@ -75,11 +75,3 @@ const closeExpModal = () => {
     $(`.${expModalWrapper.elementClass}`).css('display', 'none');
 }
 
-
-$(() => {
-    $.get('https://www.channelnewsasia.com/', (data) => {
-        console.log(data);
-        $(data).filter('meta[name=adescription]').attr("content");
-        console.log($(data).filter('meta[name=adescription]').attr("content"));
-    });
-})

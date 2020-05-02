@@ -23,6 +23,7 @@ const componentLabels = {
     taskNatureLabelLineTwo: 'BY TASK NATURE',
 }
 
+
 //============================
 //FUNCTIONS TO EXECUTE STATS
 //============================
