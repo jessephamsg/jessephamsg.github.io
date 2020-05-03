@@ -89,7 +89,7 @@ const statsService = {
         //Clear the previous entries and update with the lastest industry experience stats
         let industryExperience = statsUpdate.getIndustryExperience();
         $('#industrial-experience').empty();
-        $('#industrial-experience').append($('<h3>').text('Your Experience'));
+        $('#industrial-experience').append($('<h3>').text('Years of Experience by Industry'));
         for (key in industryExperience) {
             $('#industrial-experience').append($('<h4>').text(`${key}`))
             $('#industrial-experience').append($('<progress>').attr('max', '10').attr('value', `${industryExperience[key]}`));

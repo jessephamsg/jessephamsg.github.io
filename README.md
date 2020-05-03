@@ -112,21 +112,21 @@ As a user, I would like to be able to key in details of my jobs/ hobbies/ activi
 - Review entries by clicking on buttons on the Profile section
 
 **Required Features**: Add Jobs, Save Edits, Profile Buttons 
-- Add New Job creates a new Work Object and add it into Profile
+- Add New Job creates a new Work Object and adds it into Profile
 - Retrieve Job shows any particular Work Object of choice from the existing Profile
 - Edit Job allows updating and editing any particular Work Object of choice from the existing Profile 
 
 ----------------------------
 
 ### View Charts & Aggregated Data
-As a user, I would like to view charts and list changed, updated and aggregated every time I edit my own data
+As a user, I would like to view charts and have them changed, updated and aggregated every time I edit my own data
 
 **Required Features**: Radar Chart, Progress Bar, Aggregated List
-- Radar Chart: group all Tasks into general categories that can be eventually benchmark against other sets of industry data
-- Enjoyment Progress Bar: sum all responses to Task Enjoyment and find the average 
-- Industry Progress Bar: aggregate all responses by Industry and find sum of the years spent in each Industry
+- Radar Chart: group all Tasks into general categories that can be eventually benchmarked against other sets of industry data
+- Enjoyment Progress Bar: sum all the responses to Task Enjoyment field and calculate the average 
+- Industry Progress Bar: aggregate all responses by Industry and find the sum of the years spent in each Industry
 - Tasks Most Enjoyed List: aggregate all responses by the Level of Enjoyment and serve tasks with the highest Enjoyment score
-- Average Team Size Score: sum all responses to Team Size and find the average 
+- Average Team Size Score: sum all the responses to Team Size field and calculate the average 
 
 ----------------------------
 
@@ -134,7 +134,7 @@ As a user, I would like to view charts and list changed, updated and aggregated 
 As a user, I would like job match result changed and updated every time I edit my own data
 
 **Required Features**: Matching Mechanism
-- Matching Mechanism: choose a job from which the divergences are the least. This is based on general categories of Task Nature.
+- Matching Mechanism: choose a job from which the divergences of skills are the least. This is based on general skill categories defined by Task Nature.
 
 ----------------------------
 
