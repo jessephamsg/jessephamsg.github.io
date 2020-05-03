@@ -17,6 +17,8 @@ const buildGainExpComponent = () => {
 const buildGainExpModal = () => {
 
     $(`.${expModalWrapper.elementClass}`).css('display', 'block');
+    $(`.${expModalHead.elementClass}`).empty();
+    $(`.${expModalFooter.elementClass}`).empty();
     elementFormatter.formatElement('h3', expModalHead.elementClass, expInstructions.modalHead, '');
     for (let i = 0; i < links.taskTitle.length; i++) {
         let labelContent = [];
