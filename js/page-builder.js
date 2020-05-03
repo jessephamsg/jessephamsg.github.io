@@ -47,7 +47,7 @@ const pageBuilder = {
     buildProfileContent() {
 
         //Generate Header
-        $(`.${leftSection.elementClas}`).prepend($('<h2>').text(instructions.profilePage.generalGuide.profileSectionTitle).attr('id', 'all-jobs'));
+        $(`.${leftSection.elementClass}`).prepend($('<h2>').text(instructions.profilePage.generalGuide.profileSectionTitle).attr('id', 'all-jobs'));
 
         //Generate Buttons to Add Job
         $(`.${addJobButton.elementClass}`).text(instructions.profilePage.buttonText.addJob);
