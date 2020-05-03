@@ -19,11 +19,11 @@ Github Page: https://jessephamsg.github.io/
 
 ***Important Notes***
 - Users are not able to fully utilise all app features without installing **Moesif CORS Plugin**
-- Users will not have the best experience when using other browsers other than **Chrome Desktop at full-page view**
-- ChartJS used for chart is not stable when it comes to updating Data dynamically. The chart disappears when data is updated - **resizing the browser page** view is the quick fix to make the chart re-appear
+- Users will not have the best experience when using other browsers other than **Chrome Desktop at full-page mode**
+- ChartJS used for chart is not stable when it comes to updating Data dynamically. The chart disappears when data is updated - **resizing the browser page** view is the quick fix to make the chart re-appear.
 
 ## Project Scope
-The project involves building a skill profiler, by accepting and analysing users' data and inputs into the platform. Functionally, the app comprises 5 main components
+The project involves building a skill profiler, by accepting and analysing users' data and inputs into the platform. Functionally, the app comprises 5 main components:
 
 - **Receiving Data via Forms**: getting this step right allows other features in the platform to behave correctly: a wrong user input leads to various types of errors to the charts (e.g when charts receive and process 'null' or 'NaN' due to wrong input type.)
 
