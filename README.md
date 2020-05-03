@@ -10,7 +10,7 @@
     - [Add/ Edit/ Review Job(s)](#add-edit-review)
     - [View Charts & Aggregated Data](#view-chart)
     - [Job Match](#job-match)
-    - [Gain Experience](#gajn-exp)
+    - [Gain Experience](#gain-exp)
 - [Wireframes](#wireframe)
 - [Limitations](#limitations)
 
