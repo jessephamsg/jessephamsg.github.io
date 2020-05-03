@@ -221,7 +221,6 @@ const statsUpdate = {
             expObj.workDuration = allWorkDurationArr[i];
             allExpObj.push(expObj);
         }
-        console.log(allExpObj);
 
         //Group the objects by Industry
         let yearsGroupedByIndustry = allExpObj.reduce((acc, obj) => {
@@ -232,17 +231,14 @@ const statsUpdate = {
             acc[key].push(obj);
             return acc;
         }, {});
-        console.log(yearsGroupedByIndustry);
 
         //Find Industry Sum
         let industryExperience = {};
         for (key in yearsGroupedByIndustry) {
             let sum = yearsGroupedByIndustry[key].reduce((acc, obj) => acc + parseInt(obj.workDuration), 0);
-            console.log(sum);
             industryExperience[key] = sum;
         }
         return industryExperience;
-        console.log(industryExperience);
     },
 
     getTaskNatureData () {

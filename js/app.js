@@ -50,6 +50,11 @@ let taskEnjoyment = new bodyElement('input', 'modal-content', 'task-enjoyment');
 let taskDescription = new bodyElement('input', 'modal-content', 'task-description');
 let taskNature = new bodyElement('select', 'modal-content', 'task-nature');
 
+//WELCOME MODAL SECTION
+let welcomeModalWrapper = new bodyElement('div', 'container', 'modal-welcome');
+let welcomeModalMainBody = new bodyElement('div', 'modal-welcome', 'modal-welcome-body');
+let welcomeModalHead = new bodyElement('div', 'modal-welcome-body', 'modal-welcome-head');
+let welcomeModalFooter = new bodyElement('div', 'modal-welcome-body', 'modal-welcome-footer');
 
 const pageConstruct = {
     main: { topSection, bottomSection, modalSection },
@@ -174,40 +179,33 @@ const pageBuilder = {
     buildNavContent() {
 
         //Access Page Construct Data
-        let topSection = pageConstruct.topSection;
         let generalGuide = instructions.profilePage.generalGuide;
 
         //Generate Top Panel
-        $(`.${topSection.navLogo.elementClass}`).append($('<img>').attr('src', 'https://www.pngkit.com/png/full/13-131505_white-infinity-symbol-png-white-infinity-logo-png.png'));
-        $(`.${topSection.navTitle.elementClass}`).text(generalGuide.pageTitle);
-        $(`.${topSection.navBar.elementClass}`).append($('<div>').text(generalGuide.navTitleLineOne));
-        $(`.${topSection.navBar.elementClass}`).append($('<div>').text(generalGuide.navTitleLineTwo));
-        $(`.${pageConstruct.bottomSection.middleSection.elementClass}`).prepend($('<div>').attr('id', 'top-trapezoid'));
+        $(`.${navLogo.elementClass}`).append($('<img>').attr('src', 'https://www.pngkit.com/png/full/13-131505_white-infinity-symbol-png-white-infinity-logo-png.png'));
+        $(`.${navTitle.elementClass}`).text(generalGuide.pageTitle);
+        $(`.${navBar.elementClass}`).append($('<div>').text(generalGuide.navTitleLineOne));
+        $(`.${navBar.elementClass}`).append($('<div>').text(generalGuide.navTitleLineTwo));
+        $(`.${middleSection.elementClass}`).prepend($('<div>').attr('id', 'top-trapezoid'));
     },
 
     buildProfileContent() {
 
-        //Access Page Construct Data
-        let addJobButton = pageConstruct.leftSection.addJobButton.elementClass;
-        let profileSectionClass = pageConstruct.bottomSection.leftSection.elementClass;
-
         //Generate Header
-        $(`.${profileSectionClass}`).prepend($('<h2>').text(instructions.profilePage.generalGuide.profileSectionTitle).attr('id', 'all-jobs'));
+        $(`.${leftSection.elementClas}`).prepend($('<h2>').text(instructions.profilePage.generalGuide.profileSectionTitle).attr('id', 'all-jobs'));
 
         //Generate Buttons to Add Job
-        $(`.${addJobButton}`).text(instructions.profilePage.buttonText.addJob);
-        $(`.${addJobButton}`).on('click', navigationalController.launchForm);
+        $(`.${addJobButton.elementClass}`).text(instructions.profilePage.buttonText.addJob);
+        $(`.${addJobButton.elementClass}`).on('click', navigationalController.launchForm);
     },
 
     buildFormContent() {
 
         //Access Page Construct Data
         let buttonText = instructions.profilePage.buttonText;
-        let formFooter = pageConstruct.rightSection.formFooter.elementClass;
-        let formSectionClass = pageConstruct.bottomSection.rightSection.elementClass;
 
         //Generate Form Instructions
-        $(`.${formSectionClass}`).prepend($('<h2>').text(instructions.profilePage.generalGuide.formSectionTitle));
+        $(`.${rightSection.elementClass}`).prepend($('<h2>').text(instructions.profilePage.generalGuide.formSectionTitle));
 
         //Generate Buttons to Save Edits and Save New Jobs
         const buttons = {
@@ -215,7 +213,7 @@ const pageBuilder = {
             editJobDetails: { text: buttonText.saveEdits, callback: navigationalController.saveEditedForm }
         };
         for (let key in buttons) {
-            elementFormatter.formatButton(formFooter, buttons[key].text, buttons[key].callback);
+            elementFormatter.formatButton(formFooter.elementClass, buttons[key].text, buttons[key].callback);
         }
 
         //Hide buttons
@@ -257,12 +255,11 @@ const pageBuilder = {
 
         //Access Page Construct Data
         let generalGuide = instructions.profilePage.generalGuide;
-        let formRight = formStructure.formRight.parent.formRight.elementClass;
 
         //Generate Header 
         const formComponents = {
-            header: { element: new bodyElement('div', formRight, 'form-right-header'), text: '' },
-            body: { element: new bodyElement('div', formRight, 'form-right-body'), text: '' },
+            header: { element: new bodyElement('div', formRight.elementClass, 'form-right-header'), text: '' },
+            body: { element: new bodyElement('div', formRight.elementClass, 'form-right-body'), text: '' },
             instructions: { element: new bodyElement('p', 'form-right-header', ''), text: generalGuide.taskSectionTitle },
         };
         for (let key in formComponents) {
@@ -280,7 +277,7 @@ const pageBuilder = {
         let inputChildren = formStructure.modalFields.inputChildren;
         let selectChildren = formStructure.modalFields.selectChildren;
         let buttonText = instructions.profilePage.buttonText;
-        let modalParentClass = pageConstruct.modalSection.modalContent.elementClass;
+        let modalParentClass = modalContent.elementClass;
         let modalLabel = instructions.modalPage.dropdownLabel;
 
         //Generate Header
@@ -332,89 +329,24 @@ const pageBuilder = {
 
     buildWelcomeMsg() {
 
-        //Create Main Elements
-        let welcomeModalWrapper = new bodyElement('div', 'container', 'modal-welcome');
-        let welcomeModalMainBody = new bodyElement('div', 'modal-welcome', 'modal-welcome-body');
-        let welcomeModalHead = new bodyElement('div', 'modal-welcome-body', 'modal-welcome-head');
-        let welcomeModalFooter = new bodyElement('div', 'modal-welcome-body', 'modal-welcome-footer');
-
         //Build Main Elements
-        let welcomeModalElements = {welcomeModalWrapper, welcomeModalMainBody, welcomeModalHead, welcomeModalFooter}; 
+        let welcomeModalElements = { welcomeModalWrapper, welcomeModalMainBody, welcomeModalHead, welcomeModalFooter };
         for (key in welcomeModalElements) {
             elementFormatter.formatElement(welcomeModalElements[key].elementTagName, welcomeModalElements[key].elementParentIdentifier, '', welcomeModalElements[key].elementClass);
         }
         elementFormatter.formatButton(welcomeModalFooter.elementClass, instructions.profilePage.buttonText.closeModal, pageBuilder.closeWelcomeModal);
 
         //Build Body Content
-        let messageTagComponents = ['h3','p', 'div', 'div', 'div', 'div', 'p'];
+        let messageTagComponents = ['h3', 'p', 'div', 'div', 'div', 'div', 'p'];
         let welcomeMsgKeys = Object.keys(instructions.welcomeMsg);
-        for (let i = 0; i< messageTagComponents.length; i++) {
+        for (let i = 0; i < messageTagComponents.length; i++) {
             elementFormatter.formatElement(messageTagComponents[i], welcomeModalHead.elementClass, instructions.welcomeMsg[welcomeMsgKeys[i]], `welcome-msg-${welcomeMsgKeys[i]}`);
         }
         $(`.${welcomeModalHead.elementClass}`).html($(`.${welcomeModalHead.elementClass}`).html().replace(/\n/g, '<br/>'));
     },
 
-    closeWelcomeModal () {
+    closeWelcomeModal() {
         $(`.modal-welcome`).css('display', 'none');
-    }
-}
-
-
-//=================================
-//HELPER FUNCTIONS TO BUILD PAGE 
-//=================================
-
-
-const elementFormatter = {
-
-    formatElement(elementTagName, elementParentIdentifier, elementText, elementClass) {
-
-        let element = $(`<${elementTagName}>`);
-        $(`.${elementParentIdentifier}`).append(element.text(`${elementText}`).addClass(`${elementClass}`));
-        return element;
-    },
-
-    formatElementById(elementTagName, elementParentIdentifier, elementText, elementClass) {
-
-        let element = $(`<${elementTagName}>`);
-        $(`#${elementParentIdentifier}`).append(element.text(`${elementText}`).addClass(`${elementClass}`));
-        return element;
-    },
-
-    formatInput(inputType, inputParentClassName, labelText, inputId) {
-
-        let label = elementFormatter.formatElement('label', `${inputParentClassName}`, `${labelText}`, '').attr('for', `${inputId}`);
-        label.after($('<br>'));
-        let input = elementFormatter.formatElement(`${inputType}`, `${inputParentClassName}`, '', '').attr('id', `${inputId}`);
-        input.after($('<br>'));
-        return input;
-    },
-
-    formatPlaceHolder(inputParentClassName, labelText, inputId) {
-
-        this.formatInput('input', inputParentClassName, labelText, inputId);
-    },
-
-    formatSelection(arrayOfOptions, inputParentClassName, labelText, inputId) {
-
-        let input = this.formatInput('select', inputParentClassName, labelText, inputId);
-        input.attr('name', `${inputId}`);
-        arrayOfOptions.forEach((option) => {
-            let options = $('<option>')
-            $(`#${inputId}`).append(options.text(`${option}`).attr('value', `${option}`));
-        });
-    },
-
-    formatButton(inputParentClassName, labelText, callback) {
-
-        let button = this.formatElement('button', inputParentClassName, labelText, '');
-        button.on('click', callback)
-    },
-
-    formatTooltip(labelText, tooltipId, tooltipText) {
-
-        $(`label:contains(${labelText})`).append($('<div>').text('i').attr('id', `${tooltipId}`));
-        $(`#${tooltipId}`).append($('<span>').text(tooltipText).attr('id', `${tooltipId}-text`));
     }
 }
 
