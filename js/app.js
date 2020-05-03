@@ -126,7 +126,7 @@ const instructions = {
         workDuration: 'This is the number of YEARS you work for a certain job. Only integer input accepted',
         teamSize: 'Team refers to those working closely with you (i.e. not company size unless you work closely with the whole company!)',
         taskEnjoyment: 'This is for you to indicate how much you enjoy doing a specific task: 1 is the lowest level of enjoyment, 5 is the highest',
-        taskNature: `Create: tasks categorised as Create involve establishing something new \nOrganise: tasks that involve \nInfluence: \nResearch:`
+        taskNature: `Create: tasks categorised as Create involve establishing something new (e.g. Setting, Establishing) \nOrganise: tasks that involve managing the existing processes (e.g. Manage, Run) \nInfluence: tasks that involve changing a stakeholder's point of view (e.g. Leading, Selling, Initiating) \nResearch: tasks that involve analysis of the existing situation (e.g. analyse, research etc)`
     },
     welcomeMsg: {
         header: 'ABOUT UNIK',
