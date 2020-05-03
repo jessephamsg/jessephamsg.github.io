@@ -1,6 +1,6 @@
 # App Project Scope
 
-## Table of Content
+## Table of Contents
 - [Project Site](#project-site)
 - [Project Approach](#project-approach)
 - [Technology & App Infrastructure](#tech-infrastructure)
