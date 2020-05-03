@@ -16,6 +16,7 @@
 
 ## Project Site
 Github Page: https://jessephamsg.github.io/
+
 ***Important Notes***
 - Users are not able to fully utilise all app features without installing **Moesif CORS Plugin**
 - Users will not have the best experience when using other browsers other than **Chrome Desktop at full-page view**
