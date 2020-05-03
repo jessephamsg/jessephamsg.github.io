@@ -40,7 +40,7 @@ The project involves building a skill profiler, by accepting and analysing users
 
 **Basic Styling & Page Structure**: HTML, CSS
 
-**External Frameworks**: Jquery, ChartJS, Ajax
+**Frameworks**: Jquery, ChartJS, Ajax
 
 - JQuery: for DOM manipulation
 - ChartJS: for Radar Chart
@@ -56,8 +56,8 @@ The project involves building a skill profiler, by accepting and analysing users
 
 ### Javascript
 
-|Files   |Purpose                                                    |Details|
-|--------|-----------------------------------------------------------|---------------------------------------------------------------------|
+|File   |Purpose                                                    |Details|
+|--------|-------------------------------------------------------------------|---------------------------------------------------------------------|
 |`app.js`| Contains all variables & objects' data structures that will be used by other modules/ components| This includes (1) ***DOM*** components, their variables, objects and clases (2) ***Work*** variables, objects and classes (3) ***Gain-exp*** variables, objects and classes (4) ***Stats*** variables, objects and classes|
 |`helper.js`| Contains all reusable functions that can be used by other modules/ components| This includes those that allow you to (1) `elementFormatter` to build basic page elements (2) `workObjectFormatter` to build contents into cards (3) `entryChecker` to check user inputs (4) `uiManagement` to manage changes in styles and properties of DOM elements and (5) `objectStatsService` and `arrayStatsService` to operate on any objects/ arrays passed to them|
 |`page-builder.js`| Contains codes that build the basic page sections & components| This includes (1) ***Top Navigator Section*** that comprises Logo and Page Title (2) ***Body Section*** that comprises Profile, Form, Stats Area and (3) ***Modal Section*** that comprises Task Modal and Exp Modal|
@@ -68,8 +68,8 @@ The project involves building a skill profiler, by accepting and analysing users
 
 ### CSS
 
-|Files   |Purpose                                                    |Details|
-|--------|-----------------------------------------------------------|----------------------------------------------------------------------------|
+|File   |Purpose                                                    |Details|
+|--------|-------------------------------------------------------------|----------------------------------------------------------------------------|
 |`main.css`| Contains global styles shared by all elements| This contains (1) ***Body*** Styles (e.g Button, Text, Container) (2) ***Navigation*** Pane Styles (e.g. Position, Size, Element Arrangement) (3) ***Section*** Styles (e.g. Position, Size, Element Arrangement)|
 |`form.css`| Contains styles for forms| This comprises (1) ***Input Fields*** Styling (2) ***Error Message*** Styling (3) ***Tooltip*** Styling|
 |`charts.css`| Contains styles for charts| This comprises (1) ***Progress Bar*** Styling (2) ***Elements within Stats Section*** Styling (e.g. h3, h4, div, text)|
@@ -155,7 +155,7 @@ As a user, I would like to have options to gain more experience
 - Middle & Bottom Section: Analytics
 - Rightmost Section: where user actions are require: Form & Form fields
 
-Features to make the app user-friendly & Easy to navigate
+Features to make the app user-friendly & easy to navigate
 - Tooltip
 - Welcome modal
 - Error Message
@@ -163,7 +163,6 @@ Features to make the app user-friendly & Easy to navigate
 ## Limitations
 
 The app does not have the following features:
-- Allowing users to edit task cards
 - Allowing users to delete
 - Aggregating mechanism for Learning/Work Opportunities 
 - Mapping Experience gained back to the Work profile
