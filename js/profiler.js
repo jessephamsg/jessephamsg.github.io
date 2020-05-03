@@ -1,51 +1,3 @@
-//=============================
-//DATA TO RELATED TO WORK
-//=============================
-
-
-const formIds = {
-    workIds: ['#work-title', '#work-duration', '#team-size', '#work-nature-input', '#work-industry-input'],
-    taskIds: ['#task-title', '#task-enjoyment', '#task-description', '#task-nature'],
-    workKeys: ['workTitle', 'workDuration', 'teamSize', 'workNature', 'industry'],
-    taskKeys: ['taskTitle', 'taskEnjoyment', 'taskDescription', 'taskNature'],
-}
-
-let workIndustryOptions = [];
-
-const workNatureOptions = ['Voluntary', 'Full-time', 'Part-time', 'Freelance'];
-
-const taskNatureOptions = ['Create', 'Organise', 'Influence', 'Research'];
-
-const taskEnjoymentOptions = ['1', '2', '3', '4', '5'];
-
-class Work {
-    constructor(workTitle, workDuration, teamSize, workNature, industry, taskTitle, taskEnjoyment, taskDescription, taskNature) {
-        this.workTitle = workTitle;
-        this.workDuration = workDuration;
-        this.teamSize = teamSize;
-        this.workNature = workNature;
-        this.industry = industry;
-        this.taskTitle = taskTitle;
-        this.taskEnjoyment = taskEnjoyment;
-        this.taskDescription = taskDescription;
-        this.taskNature = taskNature;
-    }
-}
-
-const workProfile = [new Work('', '', '', '', '', [], [], [], [])];
-
-const profileInstance = {
-    taskNature: {},
-};
-
-const errorMessage = {
-    workTitle: 'Numbers not allowed',
-    workDuration: 'Letters and space not allowed',
-    teamSize: 'Letters and space not allowed',
-    form: 'Empty field detected. Make sure this field is filled'
-}
-
-
 //===================================
 //FUNCTIONS TO DISPLAY DATA
 //===================================
@@ -70,13 +22,11 @@ const renderInput = {
             if (workProfile[i].workTitle === workTitle) index = i;
         }
 
-        //Make All Inputs Editable Except Work Title// (1) Currently, Work Title can't be changed because of Work Title Matching mechanism
-        $('input').prop('readonly', false);
-        $('option').prop("disabled", false);
-        $('#work-title').prop("readonly", true);
-
-        //Restore Form to Its Full Color// (1) Form fades when it is disabled (2) Form restores color when it is enabled
-        $('.right-section').css('opacity', '1');
+        //Make All Inputs Editable Except Work Title, Restore Form to Its Full Color, Enable Save Edits button, Hide Save Jobs button, Highlight Clicked Button
+        uiManagement.changeProperties(['input', 'option', '#work-title'], [{ 'readonly': false }, { "disabled": false }, { "readonly": true }]);
+        let changedElements = ['.right-section', `button:contains(${buttonText.saveEdits})`, `button:contains(${instructions.profilePage.buttonText.saveJob})`, 'button', `button:contains(${workTitle})`];
+        let changedStyles = [{ 'opacity': '1' }, { 'display': 'block' }, { 'display': 'none' }, { 'background-color': 'rgba(0, 0, 0, 0)' }, { 'background-color': 'rgba(94, 205, 191)' }];
+        uiManagement.changeStyle(changedElements, changedStyles);
 
         //Retrieve Values from the Identified workProfile Object// (1) Assign these values to the form fields (2) Area containing task cards is emptied (3) Add relevant task cards in its place
         for (let i = 0; i < formIds.workIds.length; i++) {
@@ -86,14 +36,6 @@ const renderInput = {
         for (i = 0; i < workProfile[index].taskTitle.length; i++) {
             renderInput.showHistoricalTasks(workProfile[index].taskEnjoyment[i], workProfile[index].taskTitle[i], workProfile[index].taskNature[i], workProfile[index].taskDescription[i], i)
         }
-
-        //Enable Save Edits button, Hide Save Jobs button
-        $(`button:contains(${instructions.profilePage.buttonText.saveEdits})`).css('display', 'block');
-        $(`button:contains(${instructions.profilePage.buttonText.saveJob})`).css('display', 'none');
-
-        //Highlight Clicked Button// (1) Clicked button's background turns Cyan Green to help user easily remember which button was clicked (2) Other buttons remain the same
-        $(`button`).css('background-color', 'rgba(0, 0, 0, 0)').css('color', 'white');
-        $(`button:contains(${workTitle})`).css('background-color', 'rgba(94, 205, 191)').css('color', 'white');
     },
 
     showHistoricalTasks(taskEnjoyment, taskTitle, taskNature, taskDescription, index) {
@@ -117,103 +59,40 @@ const renderInput = {
     },
 }
 
-const workObjectFormatter = {
-
-    showTask(taskParentClass, taskEnjoyment, taskTitle, taskNature, taskDescription, id, index) {
-
-        //Create Card Wrapper
-        let cardWrapper = $('<div>').attr('id', `${id}-wrapper-${index}`).addClass('card-wrapper');
-
-        //Create Card Header
-        let cardHeader = $('<div>').attr('id', `${id}-header-${index}`).addClass('card-header');
-        let cardIcon = $('<div>').attr('id', `${id}-icon-${index}`).addClass('card-icon').text(taskEnjoyment);
-        let cardTitle = $('<div>').attr('id', `${id}-title-${index}`).addClass('card-title').text(taskTitle);
-        let cardLabel = $('<div>').attr('id', `${id}-label-${index}`).addClass('card-label').text(taskNature);
-
-        //Create Card Body
-        let cardBody = $('<div>').attr('id', `${id}-body-${index}`).addClass('card-body').text(taskDescription.substring(0, 100));
-        let cardHyperlink = $('<a>').attr('id', `${id}-hyperlink-${index}`).addClass('card-hyperlink').text('See More');
-
-        //Append All Components Together
-        $(`.${taskParentClass}`).append(cardWrapper);
-        cardWrapper.append(cardHeader.append(cardIcon, cardTitle, cardLabel));
-        cardWrapper.append(cardBody.append(cardHyperlink));
-    },
-
-    clearInputs(arrayOfInputs) {
-
-        for (let input of arrayOfInputs) {
-            $(`${input}`).val('');
-        }
-    },
-}
-
-const entryChecker = {
-
-    hasNumberInput(inputId, errorText) {
-
-        let entry = $(`${inputId}`).val();
-        $(`${inputId}+div`).remove();
-        let instruction = $('<div>').text(errorText);
-        $(`${inputId}`).after(instruction);
-        let stringArr = entry.split('');
-        (stringArr.some((item) => parseInt(item))) ? instruction.css('display', 'block') : instruction.css('display', 'none');
-    },
-
-    hasTextInput(inputId, errorText) {
-
-        let entry = $(`${inputId}`).val();
-        $(`${inputId}+div`).remove();
-        let instruction = $('<div>').text(errorText);
-        $(`${inputId}`).after(instruction);
-        let stringArr = entry.split('');
-        for(let i = 0; i < stringArr.length; i++) {
-            stringArr[i] === '0' ? stringArr[i] = '1' : stringArr[i];
-        }
-        (stringArr.every((item) => parseInt(item))) ? instruction.css('display', 'none') : instruction.css('display', 'block');
-    },
-
-    hasEmptyField (inputId, errorText) {
-
-        let entry = $(`${inputId}`).val();
-        $(`${inputId}+div`).remove();
-        let instruction = $('<div>').text(errorText);
-        $(`${inputId}`).after(instruction);
-        entry === '' || entry === null ? instruction.css('display', 'block') : instruction.css('display', 'none');
-    },
+const profileInputChecker = {
 
     checkWorkTitle() {
 
         $(`${formIds.workIds[0]}`).change(() => {
-            this.hasNumberInput(formIds.workIds[0], errorMessage[Object.keys(errorMessage)[0]]);
+            entryChecker.hasNumberInput(formIds.workIds[0], errorMessage[Object.keys(errorMessage)[0]]);
         });
     },
 
     checkWorkDuration() {
 
         $(`${formIds.workIds[1]}`).change(() => {
-            this.hasTextInput(formIds.workIds[1], errorMessage[Object.keys(errorMessage)[1]]);
+            entryChecker.hasTextInput(formIds.workIds[1], errorMessage[Object.keys(errorMessage)[1]]);
         });
     },
 
     checkTeamSize() {
 
         $(`${formIds.workIds[2]}`).change(() => {
-            this.hasTextInput(formIds.workIds[2], errorMessage[Object.keys(errorMessage)[2]]);
+            entryChecker.hasTextInput(formIds.workIds[2], errorMessage[Object.keys(errorMessage)[2]]);
         });
     },
 
     checkWorkNature() {
 
         $(`${formIds.workIds[3]}`).change(() => {
-            this.hasEmptyField(formIds.workIds[3], errorMessage[Object.keys(errorMessage)[3]]);
+            entryChecker.hasEmptyField(formIds.workIds[3], errorMessage[Object.keys(errorMessage)[3]]);
         });
     },
 
     checkWorkIndustry() {
 
         $(`${formIds.workIds[4]}`).change(() => {
-            this.hasEmptyField(formIds.workIds[4], errorMessage[Object.keys(errorMessage)[3]]);
+            entryChecker.hasEmptyField(formIds.workIds[4], errorMessage[Object.keys(errorMessage)[3]]);
         });
     }
 }
@@ -228,24 +107,19 @@ const navigationalController = {
 
     launchForm() {
 
-        //Show New Form// (1) Clear all previous inputs (2) Make all inputs editable (3) Restore form's full color
+        //Show New Form// (1) Clear all previous inputs (2) Make all inputs editable 
         workObjectFormatter.clearInputs(['input', 'select']);
         $('.form-right-body').empty();
-        $('input').prop("readonly", false);
-        $('option').prop("disabled", false);
-        $('.right-section').css('opacity', '1');
+        let changedElements = ['input', 'option'];
+        let changedStyles = [{ "readonly": false }, { "disabled": false }]
+        uiManagement.changeProperties(changedElements, changedStyles);
 
-        //Hide and Disable All Buttons// (1) Hide Save Jobs button until user inputs data into the form (2) This is to prevent users from saving multiple empty objects into the workProfile (3) Hide Save Edits button (4) All Disabled Buttons fade in color 
-        $(`button:contains(${instructions.profilePage.buttonText.saveEdits})`).css('display', 'none');
-        $(`button:contains(${instructions.profilePage.buttonText.saveJob})`).css('display', 'none');
-        $(`button`).css('background-color', 'rgba(0, 0, 0, 0)').css('color', 'white');
-        $(`button:contains(${instructions.profilePage.buttonText.addJob})`).css('background-color', 'rgba(94, 205, 191)').css('color', 'white');
+        //Restore form's full color, Hide and Disable All Buttons,Enable Add Task button Only// (1) Hide Save Jobs button until user inputs data into the form (2) This is to prevent users from saving multiple empty objects into the workProfile (3) Hide Save Edits button (4) All Disabled Buttons fade in color 
+        let buttonElements = ['.right-section', `button:contains(${buttonText.saveEdits})`, `button:contains(${buttonText.saveJob})`, 'button', `button:contains(${buttonText.addJob})`, 'button', `button:contains(${buttonText.addTask})`];
+        let buttonChangedStyles = [{ 'opacity': '1' }, { 'display': 'none' }, { 'display': 'none' }, { 'background-color': 'rgba(0, 0, 0, 0)' }, { 'background-color': 'rgba(94, 205, 191)' }, { 'opacity': '0.2' }, { 'opacity': '1' }];
+        uiManagement.changeStyle(buttonElements, buttonChangedStyles);
         $('button').attr('disabled', true);
-        $('button').css('opacity', '0.2');
-
-        //Enable Add Task button Only
-        $(`button:contains(${instructions.profilePage.buttonText.addTask})`).attr('disabled', false);
-        $(`button:contains(${instructions.profilePage.buttonText.addTask})`).css('opacity', '1');
+        $(`button:contains(${buttonText.addTask})`).attr('disabled', false);
 
         //Create a New Work Object
         const workItem = new Work('', '', '', '', '', [], [], [], []);
@@ -266,17 +140,14 @@ const navigationalController = {
         //Create A New Job Button in Profile Section// (1) This button allows user to see the full details of job entries 
         renderInput.createJobButton(workProfile[workProfile.length - 1].workTitle);
 
-        //Diable Form// (1) Disallow users to change the form input once submitted (2) Disallow users to click Save Job once the form is submitted (3) Form fades to signal Disabled mode (4) Enable all other buttons not relating to Form
-        $('input').prop("readonly", true);
-        $('option').prop("disabled", true);
-        $(`button:contains(${instructions.profilePage.buttonText.saveJob})`).css('display', 'none');
+        //Disable Form// (1) Disallow users to change the form input once submitted (2) Disallow users to click Save Job once the form is submitted (3) Form fades to signal Disabled mode (4) Enable all other buttons not relating to Form
+        uiManagement.changeProperties(['input', 'option'], [{ "readonly": true }, { "disabled": true }]);
+        uiManagement.changeStyle([`button:contains(${buttonText.saveJob})`, 'button', '.right-section'], [{ 'display': 'none' }, { 'opacity': '1' }, { 'opacity': '0.4' }]);
         $('button').attr('disabled', false);
-        $('button').css('opacity', '1');
 
         //Clear All Form Inputs & Update All Stats// (1) Clear all form inputs once a job is saved
         workObjectFormatter.clearInputs(['input', 'select']);
         $('.form-right-body').empty();
-        $('.right-section').css('opacity', '0.4');
         updateAllStats();
     },
 
@@ -284,24 +155,21 @@ const navigationalController = {
 
         //All Buttons Enabled, Modal Closed
         $('button').attr('disabled', false);
-        $('.modal').css('display', 'none');
-        $('button').css('opacity', '1');
+        uiManagement.changeStyle(['.modal', 'button'], [{ 'display': 'none' }, { 'opacity': '1' }])
     },
 
     launchModal() {
 
         //All Buttons Enabled
         $('button').attr('disabled', false);
-        $('button').css('opacity', '1');
 
         //Check for Empty Fields// (1) for Work Title, Work Duration, Team Size, Work Nature, Work Industry
-        for (let i = 0; i< formIds.workIds.length; i ++) {
+        for (let i = 0; i < formIds.workIds.length; i++) {
             entryChecker.hasEmptyField(formIds.workIds[i], errorMessage[Object.keys(errorMessage)[3]]);
         };
 
         //Modal Launched, Save Job Button Displayed
-        $(`button:contains(${instructions.profilePage.buttonText.saveJob})`).css('display', 'block');
-        $('.modal').css('display', 'block');
+        uiManagement.changeStyle(['button', `button:contains(${buttonText.saveJob})`, '.modal'], [{ 'opacity': '1' }, { 'display': 'block' }, { 'display': 'block' }]);
     },
 
     saveNewTask() {
@@ -339,13 +207,13 @@ const navigationalController = {
         //Enable or Disable Save As New Job Button// (1) If a task is added to a new work object, display Save Job Button (2) If a task is added to one of the existing work objects, hide Save Job button, display Save Edits button  
         let buttonWithTheSameTitle = $(`button:contains(${workTitle})`).length;
         if (buttonWithTheSameTitle > 0 && workTitle !== "") {
-            $(`button:contains(${instructions.profilePage.buttonText.saveJob})`).css('display', 'none');
+            $(`button:contains(${buttonText.saveJob})`).css('display', 'none');
         } else {
-            $(`button:contains(${instructions.profilePage.buttonText.saveJob})`).css('display', 'block');
+            $(`button:contains(${buttonText.saveJob})`).css('display', 'block');
         };
     },
 
-    saveEditedForm () {
+    saveEditedForm() {
 
         //All Buttons Enabled
         $('button').attr('disabled', false);
@@ -396,9 +264,9 @@ const getIndustryData = () => {
 }
 
 $(() => {
-    entryChecker.checkWorkTitle();
-    entryChecker.checkWorkDuration();
-    entryChecker.checkTeamSize();
-    entryChecker.checkWorkNature();
-    entryChecker.checkWorkIndustry();
+    profileInputChecker.checkWorkTitle();
+    profileInputChecker.checkWorkDuration();
+    profileInputChecker.checkTeamSize();
+    profileInputChecker.checkWorkNature();
+    profileInputChecker.checkWorkIndustry();
 })

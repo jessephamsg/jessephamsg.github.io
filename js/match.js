@@ -26,7 +26,7 @@ const calculateDelta = (array) => {
     for (let i = 0; i < array.length; i++) {
 
         //Calculate Delta// for each data point received
-        let deltaArr = {createDelta: 0, influenceDelta: 0, researchDelta: 0, organiseDelta:0}
+        let deltaArr = { createDelta: 0, influenceDelta: 0, researchDelta: 0, organiseDelta: 0 }
         let radarChartDataKeys = ['create', 'influence', 'research', 'organise'];
         let powerstatsKeys = ['speed', 'power', 'intelligence', 'combat'];
         let deltaArrKeys = Object.keys(deltaArr);
@@ -82,7 +82,7 @@ const buildMatchComponents = () => {
 
 
 const renderMatchedProfile = (object) => {
-    
+
     $('#bottom-links').empty();
     $('#bottom-links').append($('<h4>').text('Your Closest Job Profile Match'));
     $('#bottom-links').append($('<p>').text(object.work));
