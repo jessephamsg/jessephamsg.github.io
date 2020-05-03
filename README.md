@@ -1,9 +1,25 @@
 # App Project Scope
 
 ## Table of Content
+- [Project Site](#project-site)
+- [Project Approach](#project-approach)
+- [Technology & App Infrastructure](#tech-infrastructure)
+- [Code Organisation](#code-org)
+- [User Stories](#user-stories)
+    -[View App Instructions](#view-app-instructions)
+    -[Add/ Edit/ Review Job(s)](#add-edit-review)
+    -[View Charts & Aggregated Data](#view-chart)
+    -[Job Match](#job-match)
+    -[Gain Experience](#gajn-exp)
+- [Wireframes](#wireframe)
+- [Limitations](#limitations)
 
 ## Project Site
 Github Page: https://jessephamsg.github.io/
+***Important Notes***
+- Users are not able to fully utilise all app features without installing **Moesif CORS Plugin**
+- Users will not have the best experience when using other browsers other than **Chrome Desktop at full-page view**
+- ChartJS used for chart is not stable when it comes to updating Data dynamically. The chart disappears when data is updated - **resizing the browser page** view is the quick fix to make the chart re-appear
 
 ## Project Scope
 The project involves building a skill profiler, by accepting and analysing users' data and inputs into the platform. Functionally, the app comprises 5 main components
@@ -61,7 +77,7 @@ The project involves building a skill profiler, by accepting and analysing users
 ## User Stories
 
 ----------------------------
-### App Instructions
+### View App Instructions
 As a user, I need to know what to do when
 
 #### 1. First Using the App
@@ -142,3 +158,16 @@ Features to make the app user-friendly & Easy to navigate
 - Tooltip
 - Welcome modal
 - Error Message
+
+## Limitations
+
+The app does not have the following features:
+- Allowing users to edit task cards
+- Allowing users to delete
+- Aggregating mechanism for Learning/Work Opportunities 
+- Mapping Experience gained back to the Work profile
+- Not all Error cases have been accounted for
+- Users are not able to fully utilise all app features without installing Moesif CORS Plugin
+- Users will not have the best experience when using other browsers other than Chrome Desktop at full-page view
+- ChartJS used for chart is not stable when it comes to updating Data dynamically. The chart disappears when data is updated - resizing the browser page view is the quick fix to make the chart re-appear
+
