@@ -133,7 +133,7 @@ const instructions = {
         paragraphOne: 'Unik is a Skill Profiler platform. Simply input your work (and hobbies too!) details, to get an overview of where you are in your work and life experiences - things that spark joy, tasks you do, and how they contribute to your job match.\nYou can then choose to chart a path of your own based on your own interests and skill profile, by exploring other learning/ job opportunities out there from within the Unik platform. Remember, have fun, stay foolish, and be authentically you! \nBefore you start, note the following details for the best experience with the platform',
         paragraphTwo: 'DISPLAY: the platform using Google Chrome. No Safari please!',
         paragraphThree: 'DISPLAY: on full-screen Desktop mode',
-        paragraphFour: 'INSTALL: Moesif CORS Plugin to access full features of the platform',
+        paragraphFour: 'INSTALL: Moesif CORS Plugin to access full features of the platform. Once installed, turn it ON',
         paragraphFive: 'RESIZE: the browser to smaller size, when the chart suddenly disppears. The chart feature is still unstable so this is a quick fix!',
         paragraphSix: 'You\'re now ready!',
     }
